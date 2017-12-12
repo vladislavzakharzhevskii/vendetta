@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <!--TODO USE GRUNT TO CREATE COMMON RESULT app.js FILE-->
+    <script src="../js/libraries/jquery.min.js" type="application/javascript"/>
+    <script src="../js/libraries/angular.min.js" type="application/javascript"/>
+    <script src="../js/libraries/angular-materialize.js" type="application/javascript"/>
+    <script src="../js/libraries/materialize.min.js" type="application/javascript"/>
+
+    <script src="../js/custom/dashboard.js" type="application/javascript"/>
+    <script src="../js/custom/dashboard-service.js" type="application/javascript"/>
+
+    <!--TODO USE GRUNT TO CREATE COMMON RESULT app.css FILE-->
+    <link rel="stylesheet" href="../css/materialize.min.css" type="text/css"/>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+
+    <meta charset="UTF-8"/>
+    <title>Activity</title>
+</head>
+<body>
+
+<div ng-controller="CertainPageController">
+    <div>
+        <span class="new badge blue" data-badge-caption="0.100.2">Materialize version:</span>
+        <span class="new badge blue" data-badge-caption="1.4.9">Angular version:</span>
+    </div>
+
+
+    <div ng-if="showPreloader" id="preloader" ng-include="'html/preloader/preloader.html'"></div>
+
+
+    <div style="padding-top: 300px; width: 600px; margin-left: auto; margin-right: auto">
+        <ul class="collapsible popout" data-collapsible="accordion">
+            <li>
+                <div class="collapsible-header"><i class="material-icons">computer</i>Decorator Pattern:</div>
+
+                <div class="collapsible-body" ng-include="'html/panelsBodys/decorator.html'"></div>
+            </li>
+            <li>
+                <div class="collapsible-header"><i class="material-icons">ac_unit</i>Multi Threads:</div>
+                <div class="collapsible-body">
+                    <button class="btn waves-effect waves-light" type="submit" name="action">
+                        <i class="material-icons left">ac_unit</i>
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header"><i class="material-icons">airplanemode_active</i>Generics:</div>
+                <div class="collapsible-body"><span>UI content to check Generic</span></div>
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="fixed-action-btn horizontal">
+        <a class="btn-floating btn-large red">
+            <i class="large material-icons">mode_edit</i>
+        </a>
+        <ul>
+            <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+            <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
+            <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+            <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
+        </ul>
+    </div>
+
+
+</div>
+
+
+
+</body>
+</html>
