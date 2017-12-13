@@ -5,7 +5,7 @@ import com.vendettasoft.vendetta.models.decorator.Product;
 public class IntelCoreI7 extends PartComputer {
 
     private Long id = 3100L;
-    private String name = "Processor: Intel Core i7-7700K";
+    private String name = "Processor: Intel Core i7-7700K\n";
 
     public IntelCoreI7(ComponentType componentType) {
         super(componentType);

@@ -5,7 +5,7 @@ import com.vendettasoft.vendetta.models.decorator.Product;
 public class WesternDigital extends PartComputer {
 
     private Long id = 2062L;
-    private String name = "Hard Disk: Western Digital Blue 500GB";
+    private String name = "Hard Disk: Western Digital Blue 500GB\n";
 
     public WesternDigital(ComponentType componentType) {
         super(componentType);

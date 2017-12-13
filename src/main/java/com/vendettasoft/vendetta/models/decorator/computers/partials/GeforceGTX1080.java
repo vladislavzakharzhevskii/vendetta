@@ -5,7 +5,7 @@ import com.vendettasoft.vendetta.models.decorator.Product;
 public class GeforceGTX1080 extends PartComputer {
 
     private Long id = 20600L;
-    private String name = "Video Card: GeForce GTX 1080";
+    private String name = "Video Card: GeForce GTX 1080\n";
 
     public GeforceGTX1080(ComponentType componentType) {
         super(componentType);

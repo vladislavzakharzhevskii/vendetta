@@ -5,7 +5,7 @@ import com.vendettasoft.vendetta.models.decorator.Product;
 public class SeagateExpansion extends PartComputer {
 
     private Long id = 2061L;
-    private String name = "Hard Disk: Seagate Expansion 1.5TB";
+    private String name = "Hard Disk: Seagate Expansion 1.5TB\n";
 
 
     public SeagateExpansion(ComponentType componentType) {

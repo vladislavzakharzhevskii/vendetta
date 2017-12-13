@@ -5,7 +5,7 @@ import com.vendettasoft.vendetta.models.decorator.Product;
 public class AMDRyzen7 extends PartComputer {
 
     private Long id = 3000L;
-    private String name = "Processor: AMD Ryzen 7 1700";
+    private String name = "Processor: AMD Ryzen 7 1700\n";
 
     public AMDRyzen7(ComponentType componentType) {
         super(componentType);

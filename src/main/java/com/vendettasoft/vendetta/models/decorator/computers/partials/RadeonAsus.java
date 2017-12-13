@@ -5,7 +5,7 @@ import com.vendettasoft.vendetta.models.decorator.Product;
 public class RadeonAsus extends PartComputer {
 
     private Long id = 20500L;
-    private String name = "Video Card: Radeon RX580";
+    private String name = "Video Card: Radeon RX580\n";
 
     public RadeonAsus(ComponentType componentType) {
         super(componentType);

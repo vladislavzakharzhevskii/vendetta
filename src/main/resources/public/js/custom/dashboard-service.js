@@ -10,6 +10,19 @@ angular.module('myApp').factory('dashboardService', ['$http', function ($http) {
 
     };
 
+    srv.sendComputerOrder = function (baseId, componentsIds, successCallback, errorCallback) {
+        var req = {
+            method: "POST",
+            url: "process-order",
+            params: {
+                baseComponentId: baseId,
+                additionalComponentsIds: componentsIds
+            }
+        };
+
+        $http(req).then(successCallback, errorCallback);
+    };
+
 
 
 

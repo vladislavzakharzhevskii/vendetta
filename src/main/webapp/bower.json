@@ -8,7 +8,9 @@
   "dependencies": {
     "angular": "1.4.9",
     "materialize" : "^0.100.2",
-    "angular-materialize": "^0.2.2"
+    "angular-materialize": "^0.2.2",
+    "angular-sanitize": "~1.4.9",
+    "angular-route" : "~1.4.9"
   }
 
 }

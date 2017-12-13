@@ -6,6 +6,8 @@
     <script src="../js/libraries/angular.min.js" type="application/javascript"/>
     <script src="../js/libraries/angular-materialize.js" type="application/javascript"/>
     <script src="../js/libraries/materialize.min.js" type="application/javascript"/>
+    <script src="../js/libraries/angular-route.min.js" type="application/javascript"/>
+    <script src="../js/libraries/angular-sanitize.min.js" type="application/javascript"/>
 
     <script src="../js/custom/dashboard.js" type="application/javascript"/>
     <script src="../js/custom/dashboard-service.js" type="application/javascript"/>
@@ -35,7 +37,12 @@
             <li>
                 <div class="collapsible-header"><i class="material-icons">computer</i>Decorator Pattern:</div>
 
-                <div class="collapsible-body" ng-include="'html/panelsBodys/decorator.html'"></div>
+                <!--CHOOSE CORRESPONDING PAGE TO SHOW-->
+                <div class="collapsible-body">
+                    <div ng-if="successOrderState != 'HAS_ORDERED'" ng-include="'html/panelsBodys/decorator/decorator.html'"></div>
+
+                    <div ng-if="successOrderState == 'HAS_ORDERED'" ng-include="'html/panelsBodys/decorator/orderInfo.html'"></div>
+                </div>
             </li>
             <li>
                 <div class="collapsible-header"><i class="material-icons">ac_unit</i>Multi Threads:</div>

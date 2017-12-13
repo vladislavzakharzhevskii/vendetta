@@ -1,10 +1,17 @@
-var myApp = angular.module('myApp',['ui.materialize']);
+var myApp = angular.module('myApp',[
+    'ui.materialize',
+    'ngRoute',
+    'ngSanitize'
+]);
 
 
 myApp.controller("CertainPageController", ['$scope', 'dashboardService', function ($scope, dashboardService) {
 
-    $scope.showPreloader = true;
-    $scope.certainPage = "Angular Has Passed to Page.";
+    $scope.showPreloader = false;
+    $scope.computerAssembly = {
+        basePart: '',
+        additionalPart: []
+    };
 
     $scope.computerAssembly = {};
     dashboardService.getComputerProducts(
@@ -17,7 +24,7 @@ myApp.controller("CertainPageController", ['$scope', 'dashboardService', functio
             $scope.hardDisks = [];
             $scope.processors = [];
             $scope.videoCards = [];
-            angular.forEach(compData['Computers-parts'], function (vdalue, key) {
+            angular.forEach(compData['Computers-parts'], function (value, key) {
                 var cType = value.componentType;
                 if(cType == 'processor'){
                     $scope.processors.push(value);
@@ -37,7 +44,26 @@ myApp.controller("CertainPageController", ['$scope', 'dashboardService', functio
 
     $scope.doOrder = function () {
         $scope.showPreloader = true;
-        /*send request and create model object*/
+        $scope.orderingProcess = true;
+
+        //TODO IT"S HACK TO CONVERT KEY-VALUE ARRAY to SIMPLE VALUES ARRAY
+        var selectedComponentsIds = [];
+        angular.forEach($scope.computerAssembly.additionalPart, function (value, key) {
+            selectedComponentsIds.push(value);
+        });
+        /*send request and create model object on the server*/
+        dashboardService.sendComputerOrder($scope.computerAssembly.basePart, selectedComponentsIds,
+            function successCallback(response) {
+                $scope.showPreloader = false;
+                $scope.orderingProcess = false;
+
+                $scope.successOrderState = 'HAS_ORDERED';
+                $scope.successOrderInfo = response.data;
+
+            }, function errorCallback(response) {
+                $scope.showPreloader = false;
+                $scope.orderingProcess = false;
+            });
 
     };
 

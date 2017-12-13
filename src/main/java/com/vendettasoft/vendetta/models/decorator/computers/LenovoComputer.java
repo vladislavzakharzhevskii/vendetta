@@ -3,7 +3,7 @@ package com.vendettasoft.vendetta.models.decorator.computers;
 public class LenovoComputer extends ComputerBase {
 
     private Long id = 3L;
-    private String name = "Lenovo";
+    private String name = "Lenovo\n";
 
     @Override
     public Long getId() {
@@ -18,8 +18,8 @@ public class LenovoComputer extends ComputerBase {
     @Override
     public String getDescription() {
         return "Высокая производительность, широкие возможности. Процессор Intel Core обеспечивает отличное качество графики и " +
-                "высокую производительность. Его вычислительная мощность откроет перед вами новый уровень возможностей для работы " +
-                "и развлечений.";
+                "высокую производительность. Его вычислительная мощность откроет перед вами новый уровень возможностей для работы" +
+                "и развлечений.\n";
     }
 
     /**

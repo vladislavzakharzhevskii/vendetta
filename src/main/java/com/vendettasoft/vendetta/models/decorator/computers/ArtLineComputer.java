@@ -3,7 +3,7 @@ package com.vendettasoft.vendetta.models.decorator.computers;
 public class ArtLineComputer extends ComputerBase {
 
     private Long id = 1L;
-    private String name = "ARTLINE";
+    private String name = "ARTLINE \n";
 
     @Override
     public Long getId() {
@@ -19,7 +19,7 @@ public class ArtLineComputer extends ComputerBase {
     public String getDescription() {
         return "ARTLINE Home H43 созданы для того, что бы вы смогли легко справляться с домашними мультимедийными задачами. " +
                 "А так же, комфортно чувствовали себя при выполнении любых сложных задач, таких как фото-видео- монтаж, " +
-                "программирование, кодирование видеофайлов.";
+                "программирование, кодирование видеофайлов. \n";
     }
 
 

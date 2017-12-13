@@ -22,4 +22,8 @@ public abstract class PartProductBase implements Product {
     @Override
     public abstract Double getCost();
 
+    public void addProduct(Product product) {
+        this.product = product;
+    }
+
 }

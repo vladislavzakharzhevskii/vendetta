@@ -1,5 +1,6 @@
 package com.vendettasoft.vendetta.services;
 
+import com.vendettasoft.vendetta.models.decorator.PartProductBase;
 import com.vendettasoft.vendetta.models.decorator.Product;
 import com.vendettasoft.vendetta.models.decorator.computers.ArtLineComputer;
 import com.vendettasoft.vendetta.models.decorator.computers.AsusComputer;
@@ -50,6 +51,11 @@ public class ComputerDecoratorService implements DecoratorService {
     }
 
     @Override
+    public Product getOrderModel(Long productId) {
+        return COMPUTER_STRATEGY.get(productId);
+    }
+
+    @Override
     public Map<String, Object> getOrderModel(List<Long> partialsIds, Long baseTypeId) {
         Map<String, Object> model = new HashMap<>(2);
 //        if (COMPUTER_STRATEGY.containsKey(baseTypeId)) {}/*TODO DOES IT NEED TO USE?*/
@@ -74,4 +80,13 @@ public class ComputerDecoratorService implements DecoratorService {
     }
 
 
+    @Override
+    public void restoreProducts() {
+        for (Long key : COMPUTER_STRATEGY.keySet()) {
+            Product product = COMPUTER_STRATEGY.get(key);
+            if (product instanceof PartProductBase) {
+                ((PartProductBase) product).addProduct(null);
+            }
+        }
+    }
 }

@@ -1,0 +1,39 @@
+
+<div id="status-line" class="row">
+    <div class="col s6">
+        <h5>The Ordering State:</h5>
+    </div>
+    <div class="col s6">
+        <span class="new badge green" data-badge-caption="">Success:</span>
+        <span class="right">
+            <i class="material-icons">check</i>
+        </span>
+    </div>
+</div>
+
+
+<!--NAMES-->
+<div id="components-line" class="row">
+    <h6>Components:</h6>
+    <div ng-bind-html="successOrderInfo.components"></div>
+    </hr>
+</div>
+
+<!--DESCRIPTIONS-->
+<div id="descriptions-line" class="row">
+    <h6>Description:</h6>
+    <div ng-bind-html="successOrderInfo.description"></div>
+    </hr>
+</div>
+
+
+
+<!--TOTAL COST-->
+<div id="cost-line" class="row">
+    <div class="col s6">
+        <h5>Result Cost:</h5>
+    </div>
+    <div class="col s6">
+        <h5>{{successOrderInfo.cost}}</h5>
+    </div>
+</div>
