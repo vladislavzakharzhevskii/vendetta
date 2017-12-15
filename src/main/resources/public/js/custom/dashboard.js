@@ -67,5 +67,24 @@ myApp.controller("CertainPageController", ['$scope', 'dashboardService', functio
 
     };
 
+    $scope.threadTimes = [3,5,10,30,60];
+    $scope.thread = {simpleThreadWorkingTime: ''};
+
+
+    $scope.startSimpleThread = function () {
+        $scope.thread.showThreadPreLoader = true;
+        $scope.thread.message = '';
+
+        dashboardService.startSimpleThreadRequest($scope.thread.simpleThreadWorkingTime, function successCallback(response) {
+            $scope.thread.showThreadPreLoader = false;
+            $scope.thread.message = "<br><span><i class='material-icons'>check</i></span><span>Take a look into server console.</span>"
+        },function errorCallback(response) {
+            $scope.thread.showThreadPreLoader = false;
+            $scope.thread.message = "<br><span class='new badge red' data-badge-caption=''>Error</span><span>Check Browser and Server logs.</span>"
+
+        });
+    };
+
+
 }]);
 

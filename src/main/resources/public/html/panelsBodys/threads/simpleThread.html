@@ -1,0 +1,13 @@
+
+
+<h5>Choose Thread Working Time:</h5>
+<div input-field>
+    <select class="" ng-model="thread.simpleThreadWorkingTime" material-select watch>
+        <option ng-repeat="value in threadTimes" value="{{value}}">{{value}} Seconds</option>
+    </select>
+</div>
+<button class="btn waves-effect waves-light" ng-click="startSimpleThread();">
+    <i class="material-icons left">ac_unit</i>
+    Start
+    <i class="material-icons right">send</i>
+</button>

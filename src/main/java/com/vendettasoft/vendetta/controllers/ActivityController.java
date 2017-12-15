@@ -8,12 +8,12 @@ public class ActivityController {
 
     @RequestMapping(path = "/activity")
     public String showActivityList() {
-        return "html/activity";
+        return "html/mainPage";
     }
 
     @RequestMapping(path = "/")
     public String welcome() {
-        return "html/activity";
+        return "html/mainPage";
     }
 
 

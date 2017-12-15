@@ -9,6 +9,7 @@
     <script src="../js/libraries/angular-route.min.js" type="application/javascript"/>
     <script src="../js/libraries/angular-sanitize.min.js" type="application/javascript"/>
 
+
     <script src="../js/custom/dashboard.js" type="application/javascript"/>
     <script src="../js/custom/dashboard-service.js" type="application/javascript"/>
 
@@ -29,7 +30,7 @@
     </div>
 
 
-    <div ng-if="showPreloader" id="preloader" ng-include="'html/preloader/preloader.html'"></div>
+    <div ng-if="showPreloader" id="pre-loader" ng-include="'html/preloader/preloader.html'"></div>
 
 
     <div style="padding-top: 300px; width: 600px; margin-left: auto; margin-right: auto">
@@ -39,6 +40,7 @@
 
                 <!--CHOOSE CORRESPONDING PAGE TO SHOW-->
                 <div class="collapsible-body">
+
                     <div ng-if="successOrderState != 'HAS_ORDERED'" ng-include="'html/panelsBodys/decorator/decorator.html'"></div>
 
                     <div ng-if="successOrderState == 'HAS_ORDERED'" ng-include="'html/panelsBodys/decorator/orderInfo.html'"></div>
@@ -47,10 +49,14 @@
             <li>
                 <div class="collapsible-header"><i class="material-icons">ac_unit</i>Multi Threads:</div>
                 <div class="collapsible-body">
-                    <button class="btn waves-effect waves-light" type="submit" name="action">
-                        <i class="material-icons left">ac_unit</i>
-                        <i class="material-icons right">send</i>
-                    </button>
+
+                    <div ng-include="'html/panelsBodys/threads/simpleThread.html'"></div>
+
+                    <div ng-if="thread.showThreadPreLoader">
+                        <div ng-include="'html/preloaders/interminatePreloader.html'"></div>
+                    </div>
+
+                    <div id="simple-thread-result" ng-bind-html="thread.message"></div>
                 </div>
             </li>
             <li>

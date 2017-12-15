@@ -23,6 +23,18 @@ angular.module('myApp').factory('dashboardService', ['$http', function ($http) {
         $http(req).then(successCallback, errorCallback);
     };
 
+    srv.startSimpleThreadRequest = function (threadWorkingTime, successCallback, errorCallback) {
+        var req = {
+            method: 'POST',
+            url: 'start-single-multithreads',
+            headers: { 'Accept': 'text/plain' },
+            params: {
+                workingTime: threadWorkingTime
+            }
+        };
+
+        $http(req).then(successCallback, errorCallback);
+    };
 
 
 

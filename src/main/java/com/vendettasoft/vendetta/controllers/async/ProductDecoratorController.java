@@ -1,4 +1,4 @@
-package com.vendettasoft.vendetta.controllers.patterns;
+package com.vendettasoft.vendetta.controllers.async;
 
 import com.vendettasoft.vendetta.models.decorator.PartProductBase;
 import com.vendettasoft.vendetta.models.decorator.Product;
