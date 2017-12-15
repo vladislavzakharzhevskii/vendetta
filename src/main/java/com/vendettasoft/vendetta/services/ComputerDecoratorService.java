@@ -7,12 +7,17 @@ import com.vendettasoft.vendetta.models.decorator.computers.AsusComputer;
 import com.vendettasoft.vendetta.models.decorator.computers.ComputerBase;
 import com.vendettasoft.vendetta.models.decorator.computers.LenovoComputer;
 import com.vendettasoft.vendetta.models.decorator.computers.partials.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
 public class ComputerDecoratorService implements DecoratorService {
+
+    @Autowired
+    private JdbcOperations jdbc;
 
     private final static Map<Long, Product> COMPUTER_STRATEGY = new HashMap<Long, Product>();
     static {

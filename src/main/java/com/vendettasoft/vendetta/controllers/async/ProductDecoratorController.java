@@ -1,5 +1,6 @@
 package com.vendettasoft.vendetta.controllers.async;
 
+import com.vendettasoft.vendetta.dao.ComputerDao;
 import com.vendettasoft.vendetta.models.decorator.PartProductBase;
 import com.vendettasoft.vendetta.models.decorator.Product;
 import com.vendettasoft.vendetta.models.decorator.computers.ComputerBase;
@@ -22,9 +23,13 @@ public class ProductDecoratorController {
     @Autowired
     private DecoratorService decoratorService;
 
+    @Autowired
+    private ComputerDao computerDao;
+
 
     @RequestMapping("/get-computers-data")
     public Map<String, Object> getComputersProduct() {
+
         decoratorService.restoreProducts();
         List<Product> computerBase = decoratorService.getProductsByType(ComputerBase.COMPUTER_BASE);
         List<Product> computerParts = decoratorService.getProductsByType(PartComputer.PARTIALS_COMPUTER);
