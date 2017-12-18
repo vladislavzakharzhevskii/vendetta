@@ -1,0 +1,36 @@
+TRAINI CONETNT HERE
+
+
+
+<div style="padding-top: 300px; width: 600px; margin-left: auto; margin-right: auto">
+    <ul class="collapsible popout" data-collapsible="accordion">
+        <li>
+            <div class="collapsible-header"><i class="material-icons">computer</i>Decorator Pattern:</div>
+
+            <!--CHOOSE CORRESPONDING PAGE TO SHOW-->
+            <div class="collapsible-body">
+
+                <div ng-if="successOrderState != 'HAS_ORDERED'" ng-include="'html/panelsBodys/decorator/decorator.html'"></div>
+
+                <div ng-if="successOrderState == 'HAS_ORDERED'" ng-include="'html/panelsBodys/decorator/orderInfo.html'"></div>
+            </div>
+        </li>
+        <li>
+            <div class="collapsible-header"><i class="material-icons">ac_unit</i>Multi Threads:</div>
+            <div class="collapsible-body">
+
+                <div ng-include="'html/panelsBodys/threads/simpleThread.html'"></div>
+
+                <div ng-if="thread.showThreadPreLoader">
+                    <div ng-include="'html/preloaders/interminatePreloader.html'"></div>
+                </div>
+
+                <div id="simple-thread-result" ng-bind-html="thread.message"></div>
+            </div>
+        </li>
+        <li>
+            <div class="collapsible-header"><i class="material-icons">airplanemode_active</i>Generics:</div>
+            <div class="collapsible-body"><span>UI content to check Generic</span></div>
+        </li>
+    </ul>
+</div>

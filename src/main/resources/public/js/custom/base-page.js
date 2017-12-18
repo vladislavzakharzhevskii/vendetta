@@ -1,13 +1,11 @@
-var myApp = angular.module('myApp',[
-    'ui.materialize',
-    'ngRoute',
-    'ngSanitize'
-]);
 
 
 myApp.controller("CertainPageController", ['$scope', 'dashboardService', function ($scope, dashboardService) {
 
     $scope.showPreloader = false;
+
+    $scope.page = {htmlPage: 'dashboard'};
+
     $scope.computerAssembly = {
         basePart: '',
         additionalPart: []

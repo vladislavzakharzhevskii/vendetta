@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html ng-app="myApp">
+<html ng-app="myApp" xmlns="http://www.w3.org/1999/html">
 <head>
-    <!--TODO USE GRUNT TO CREATE COMMON RESULT app.js FILE-->
+
     <script src="../js/libraries/jquery.min.js" type="application/javascript"/>
     <script src="../js/libraries/angular.min.js" type="application/javascript"/>
     <script src="../js/libraries/angular-materialize.js" type="application/javascript"/>
@@ -9,11 +9,11 @@
     <script src="../js/libraries/angular-route.min.js" type="application/javascript"/>
     <script src="../js/libraries/angular-sanitize.min.js" type="application/javascript"/>
 
+    <script src="../js/custom/app.js" type="application/javascript"></script>
+    <script src="../js/custom/routing.js" type="application/javascript"></script>
+    <script src="../js/custom/base-page.js" type="application/javascript"></script>
+    <script src="../js/custom/dashboard-service.js" type="application/javascript"></script>
 
-    <script src="../js/custom/dashboard.js" type="application/javascript"/>
-    <script src="../js/custom/dashboard-service.js" type="application/javascript"/>
-
-    <!--TODO USE GRUNT TO CREATE COMMON RESULT app.css FILE-->
     <link rel="stylesheet" href="../css/materialize.min.css" type="text/css"/>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
@@ -29,53 +29,29 @@
         <span class="new badge blue" data-badge-caption="1.4.9">Angular version:</span>
     </div>
 
+    HTML PAGE IS {{page.htmlPage}}
 
+    <!-- MENU SELECTING -->
     <div class="row">
         <div class="col s8">
             <ul class="tabs">
-                <li class="tab col s3"><a href="#test1">Dashboard</a></li>
-                <li class="tab col s3"><a href="#test2">Computers Management.</a></li>
+                <li class="tab col s2"><a href="#dashboard" ng-click="page.htmlPage = 'dashboard'">Dashboard</a></li>
+                <li class="tab col s2"><a href="#computer-management"  ng-click="page.htmlPage = 'computers'">Computers</a></li>
+                <li class="tab col s2"><a href="#computer-management"  ng-click="page.htmlPage = 'orders'">Orders</a></li>
+                <li class="tab col s2"><a href="#computer-management"  ng-click="page.htmlPage = 'clients'">Clients</a></li>
+                <li class="tab col s2"><a href="#computer-management"  ng-click="page.htmlPage = 'traini'">Traini...</a></li>
             </ul>
         </div>
     </div>
 
     <div ng-if="showPreloader" id="pre-loader" ng-include="'html/preloader/preloader.html'"></div>
 
-
-    <div style="padding-top: 300px; width: 600px; margin-left: auto; margin-right: auto">
-        <ul class="collapsible popout" data-collapsible="accordion">
-            <li>
-                <div class="collapsible-header"><i class="material-icons">computer</i>Decorator Pattern:</div>
-
-                <!--CHOOSE CORRESPONDING PAGE TO SHOW-->
-                <div class="collapsible-body">
-
-                    <div ng-if="successOrderState != 'HAS_ORDERED'" ng-include="'html/panelsBodys/decorator/decorator.html'"></div>
-
-                    <div ng-if="successOrderState == 'HAS_ORDERED'" ng-include="'html/panelsBodys/decorator/orderInfo.html'"></div>
-                </div>
-            </li>
-            <li>
-                <div class="collapsible-header"><i class="material-icons">ac_unit</i>Multi Threads:</div>
-                <div class="collapsible-body">
-
-                    <div ng-include="'html/panelsBodys/threads/simpleThread.html'"></div>
-
-                    <div ng-if="thread.showThreadPreLoader">
-                        <div ng-include="'html/preloaders/interminatePreloader.html'"></div>
-                    </div>
-
-                    <div id="simple-thread-result" ng-bind-html="thread.message"></div>
-                </div>
-            </li>
-            <li>
-                <div class="collapsible-header"><i class="material-icons">airplanemode_active</i>Generics:</div>
-                <div class="collapsible-body"><span>UI content to check Generic</span></div>
-            </li>
-        </ul>
-    </div>
+    <!-- CONTENT PAGE -->
+    <div ng-include="'html/pages/' + page.htmlPage + '.html'"></div>
 
 
+
+    <!-- FOOTER -->
     <div class="fixed-action-btn horizontal">
         <a class="btn-floating btn-large red">
             <i class="large material-icons">mode_edit</i>
