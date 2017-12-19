@@ -1,1 +1,55 @@
-COMPUTERS CONTENT HERE
+
+<div id="computers-content" class="row" ng-controller="ComputersController">
+    <table class="highlight responsive-table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Cost</th>
+            <th class="right">Actions</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="computer in computers">
+            <td>{{computer.pk}}</td>
+            <td>{{computer.name}}</td>
+            <td>{{computer.description}}</td>
+            <td>{{computer.type}}</td>
+            <td>{{computer.cost}}$</td>
+            <td class="right">
+                <a class="btn-floating red"  ng-click=""><i class="material-icons">remove</i></a>
+                <a class="btn-floating blue" ng-click="addEditProduct(computer);"><i class="material-icons">edit</i></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+    <a class="btn-floating btn-small waves-effect red" ng-click="addEditProduct();">
+        <i class="material-icons">add</i>
+    </a>
+
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>Add Product</h4>
+
+            <div ng-include="'html/computers/computer-form.html'"></div>
+
+
+        </div>
+        <div class="modal-footer">
+            <a class="btn-flat modal-action modal-close left">Close</a>
+            <a class="btn right" ng-click="saveProduct();">Save</a>
+        </div>
+    </div>
+
+
+
+
+
+</div>

@@ -1,4 +1,4 @@
-angular.module('myApp').factory('dashboardService', ['$http', function ($http) {
+angular.module('myApp').factory('trainiService', ['$http', function ($http) {
 
     var srv = {};
 

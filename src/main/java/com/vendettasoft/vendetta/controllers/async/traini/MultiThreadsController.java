@@ -1,7 +1,7 @@
-package com.vendettasoft.vendetta.controllers.async;
+package com.vendettasoft.vendetta.controllers.async.traini;
 
 
-import com.vendettasoft.vendetta.services.ThreadService;
+import com.vendettasoft.vendetta.services.traini.ThreadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

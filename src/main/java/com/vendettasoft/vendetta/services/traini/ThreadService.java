@@ -1,4 +1,4 @@
-package com.vendettasoft.vendetta.services;
+package com.vendettasoft.vendetta.services.traini;
 
 public interface ThreadService {
 

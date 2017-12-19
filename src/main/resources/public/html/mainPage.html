@@ -12,7 +12,9 @@
     <script src="../js/custom/app.js" type="application/javascript"></script>
     <script src="../js/custom/routing.js" type="application/javascript"></script>
     <script src="../js/custom/base-page.js" type="application/javascript"></script>
-    <script src="../js/custom/dashboard-service.js" type="application/javascript"></script>
+    <script src="../js/custom/computersController.js" type="application/javascript"></script>
+    <script src="../js/custom/services/traini-service.js" type="application/javascript"></script>
+    <script src="../js/custom/services/computer-service.js" type="application/javascript"></script>
 
     <link rel="stylesheet" href="../css/materialize.min.css" type="text/css"/>
 
@@ -29,7 +31,7 @@
         <span class="new badge blue" data-badge-caption="1.4.9">Angular version:</span>
     </div>
 
-    HTML PAGE IS {{page.htmlPage}}
+    HTML PAGE IS '{{page.htmlPage}}'.html
 
     <!-- MENU SELECTING -->
     <div class="row">
@@ -44,10 +46,10 @@
         </div>
     </div>
 
-    <div ng-if="showPreloader" id="pre-loader" ng-include="'html/preloader/preloader.html'"></div>
+    <div ng-if="general.showPreloader" id="pre-loader" ng-include="'html/preloader/preloader.html'"></div>
 
     <!-- CONTENT PAGE -->
-    <div ng-include="'html/pages/' + page.htmlPage + '.html'"></div>
+    <div class="container" ng-include="'html/pages/' + page.htmlPage + '.html'"></div>
 
 
 

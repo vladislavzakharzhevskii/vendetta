@@ -1,6 +1,6 @@
-package com.vendettasoft.vendetta.services;
+package com.vendettasoft.vendetta.services.traini;
 
-import com.vendettasoft.vendetta.models.execution.CustomCounterThread;
+import com.vendettasoft.vendetta.models.traini.execution.CustomCounterThread;
 import org.springframework.stereotype.Service;
 
 @Service

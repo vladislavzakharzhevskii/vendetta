@@ -1,12 +1,12 @@
-package com.vendettasoft.vendetta.controllers.async;
+package com.vendettasoft.vendetta.controllers.async.traini;
 
 import com.vendettasoft.vendetta.dao.ComputerDao;
-import com.vendettasoft.vendetta.models.decorator.PartProductBase;
-import com.vendettasoft.vendetta.models.decorator.Product;
-import com.vendettasoft.vendetta.models.decorator.computers.ComputerBase;
-import com.vendettasoft.vendetta.models.decorator.computers.partials.PartComputer;
 import com.vendettasoft.vendetta.models.dto.ComputerOrder;
-import com.vendettasoft.vendetta.services.DecoratorService;
+import com.vendettasoft.vendetta.models.traini.decorator.PartProductBase;
+import com.vendettasoft.vendetta.models.traini.decorator.Product;
+import com.vendettasoft.vendetta.models.traini.decorator.computers.ComputerBase;
+import com.vendettasoft.vendetta.models.traini.decorator.computers.partials.PartComputer;
+import com.vendettasoft.vendetta.services.traini.DecoratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
