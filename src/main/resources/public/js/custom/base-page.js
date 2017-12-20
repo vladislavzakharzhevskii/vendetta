@@ -4,7 +4,7 @@ myApp.controller("CertainPageController", ['$rootScope', '$scope',  function ($r
 
     $rootScope.general = {showPreloader: false};
 
-    $scope.page = {htmlPage: 'computers'};
+    $scope.page = {htmlPage: 'orders'};
 
 
 }]);

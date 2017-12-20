@@ -1,7 +1,7 @@
 package com.vendettasoft.vendetta.controllers.async.traini;
 
 import com.vendettasoft.vendetta.dao.ComputerDao;
-import com.vendettasoft.vendetta.models.dto.ComputerOrder;
+import com.vendettasoft.vendetta.models.dto.ComputerOrderDTO;
 import com.vendettasoft.vendetta.models.traini.decorator.PartProductBase;
 import com.vendettasoft.vendetta.models.traini.decorator.Product;
 import com.vendettasoft.vendetta.models.traini.decorator.computers.ComputerBase;
@@ -44,7 +44,7 @@ public class ProductDecoratorController {
 
 
     @RequestMapping(value = "/process-order", method = RequestMethod.POST)
-    public Map<String, String> decorator(@ModelAttribute ComputerOrder computerOrder) {
+    public Map<String, String> decorator(@ModelAttribute ComputerOrderDTO computerOrderDTO) {
 
         try {
             Thread.sleep(2500);
@@ -53,12 +53,12 @@ public class ProductDecoratorController {
         }
 
 
-        List<Product> additionalComponents = decoratorService.getOrderModel(computerOrder.getAdditionalComponentsIds());
+        List<Product> additionalComponents = decoratorService.getOrderModel(computerOrderDTO.getAdditionalComponentsIds());
 
         Product root = additionalComponents.get(0);
         additionalComponents.remove(root);
 
-        Long baseComponentId = computerOrder.getBaseComponentId();
+        Long baseComponentId = computerOrderDTO.getBaseComponentId();
         Product baseOrderModel = decoratorService.getOrderModel(baseComponentId);
         ((PartProductBase) additionalComponents.get(additionalComponents.size() - 1)).addProduct(baseOrderModel);
 

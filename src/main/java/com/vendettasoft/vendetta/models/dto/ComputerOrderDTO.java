@@ -1,9 +1,12 @@
 package com.vendettasoft.vendetta.models.dto;
 
+import com.vendettasoft.vendetta.models.hibernate.User;
+
 import java.util.List;
 
-public class ComputerOrder {
+public class ComputerOrderDTO {
 
+    private User user = new User();
     private Long baseComponentId;
     private List<Long> additionalComponentsIds;
 
@@ -21,5 +24,13 @@ public class ComputerOrder {
 
     public void setAdditionalComponentsIds(List<Long> additionalComponentsIds) {
         this.additionalComponentsIds = additionalComponentsIds;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

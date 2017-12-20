@@ -27,6 +27,11 @@ public class ComputerPart implements Serializable {
     @Column(name = "type")
     private String type;
 
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinTable(name = "order_computer_part",
+//            joinColumns = @JoinColumn(name = "order_pk"), inverseJoinColumns = @JoinColumn(name = "computer_part_pk"))
+//    private Order order;
+
 
     public long getPk() {
         return pk;
@@ -67,4 +72,12 @@ public class ComputerPart implements Serializable {
     public void setType(String type) {
         this.type = type;
     }
+
+//    public Order getOrder() {
+//        return order;
+//    }
+//
+//    public void setOrder(Order order) {
+//        this.order = order;
+//    }
 }

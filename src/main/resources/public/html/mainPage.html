@@ -2,19 +2,21 @@
 <html ng-app="myApp" xmlns="http://www.w3.org/1999/html">
 <head>
 
-    <script src="../js/libraries/jquery.min.js" type="application/javascript"/>
-    <script src="../js/libraries/angular.min.js" type="application/javascript"/>
-    <script src="../js/libraries/angular-materialize.js" type="application/javascript"/>
-    <script src="../js/libraries/materialize.min.js" type="application/javascript"/>
-    <script src="../js/libraries/angular-route.min.js" type="application/javascript"/>
-    <script src="../js/libraries/angular-sanitize.min.js" type="application/javascript"/>
+    <script src="../js/libraries/jquery.min.js" type="application/javascript"></script>
+    <script src="../js/libraries/angular.min.js" type="application/javascript"></script>
+    <script src="../js/libraries/angular-materialize.js" type="application/javascript"></script>
+    <script src="../js/libraries/materialize.min.js" type="application/javascript"></script>
+    <script src="../js/libraries/angular-route.min.js" type="application/javascript"></script>
+    <script src="../js/libraries/angular-sanitize.min.js" type="application/javascript"></script>
 
     <script src="../js/custom/app.js" type="application/javascript"></script>
     <script src="../js/custom/routing.js" type="application/javascript"></script>
     <script src="../js/custom/base-page.js" type="application/javascript"></script>
     <script src="../js/custom/computersController.js" type="application/javascript"></script>
+    <script src="../js/custom/order-controller.js" type="application/javascript"></script>
     <script src="../js/custom/services/traini-service.js" type="application/javascript"></script>
     <script src="../js/custom/services/computer-service.js" type="application/javascript"></script>
+    <script src="../js/custom/services/order-service.js" type="application/javascript"></script>
 
     <link rel="stylesheet" href="../css/materialize.min.css" type="text/css"/>
 
@@ -26,12 +28,16 @@
 <body>
 
 <div ng-controller="CertainPageController">
-    <div>
+    <!--<div class="left">-->
+        <!--<span class="new badge green" data-badge-caption=" / User">Admin</span>-->
+    <!--</div>-->
+    <div class="right">
         <span class="new badge blue" data-badge-caption="0.100.2">Materialize version:</span>
         <span class="new badge blue" data-badge-caption="1.4.9">Angular version:</span>
     </div>
-
-    HTML PAGE IS '{{page.htmlPage}}'.html
+    <div class="left" style="width: 100%">
+        HTML PAGE IS '{{page.htmlPage}}'.html
+    </div>
 
     <!-- MENU SELECTING -->
     <div class="row">

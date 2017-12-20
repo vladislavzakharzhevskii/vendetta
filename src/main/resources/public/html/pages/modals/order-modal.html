@@ -1,0 +1,93 @@
+
+<!-- TAKE ORDER MODAL DIALOG -->
+
+<div id="orderModal" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <h4>New Order</h4>
+
+
+        <div id="content">
+
+            <div class="row">
+                <h6>Client Info:</h6>
+
+                <div input-field class="col s4">
+                    <input type="text" ng-model="order.user.firstName">
+                    <label>First Name:</label>
+                </div>
+
+                <div input-field class="col s4">
+                    <input type="text" ng-model="order.user.lastName">
+                    <label>Last Name:</label>
+                </div>
+
+                <div input-field class="col s4">
+                    <input input-date type="text" format="dd/mm/yyyy" ng-model="order.user.dateBirthday">
+                    <label>Date of Birthday:</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <h6>Order Info:</h6>
+
+                <div input-field class="col s6">
+                    <select id="mainPart" material-select watch ng-model="order.base"
+                            ng-options="item as item.name for item in parsedComputersData['Base']">
+                        <option value="" disabled>Choose Base Model:</option>
+                        <option ng-repeat="basePart in parsedComputersData['Base']">{{basePart.name}}</option>
+                    </select>
+                    <label for="mainPart">Main Computer Part</label>
+                </div>
+
+                <div input-field class="col s6">
+                    <select id="additionalParts" material-select multiple watch ng-model="order.additional"
+                            ng-options="item as item.name for item in parsedComputersData['Additional']">
+                        <option value="" disabled>Choose Additional Parts:</option>
+                        <option ng-repeat="part in parsedComputersData['Additional']">{{part.name}}</option>
+                    </select>
+                    <label for="additionalParts">Additional Computer Parts</label>
+                </div>
+
+
+                <p>
+                    <input type="checkbox" class="filled-in" id="filled-in-box" ng-model="checked"/>
+                    <label for="filled-in-box">Do you agree with 'Terms and Conditions' instructures</label>
+                </p>
+
+
+                <div ng-if="checked">
+                    <h5>You Order</h5>
+
+                    <div class="">
+                        <span>Main Part: {{order.base.name}} &#8211</span>
+                        <span class="regular">{{order.base.cost}}$</span>
+                    </div>
+
+                    <div class="">
+                        <span>Additional Parts:</span>
+                        <span ng-repeat="part in order.additional">
+                            <span>{{part.name}} &#8211</span>
+                            <span>{{part.cost}}$ </span>
+                        </span>
+                    </div>
+
+                    <div class="right">
+                        <span class="bold">
+                            <h5>Total Cost is:  {{getTotalCost();}} </h5>
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="btn-flat modal-action modal-close waves-effect waves-green left">Close</a>
+        <a href="#!" class="btn blue right" ng-click="submitOrder();">Submit</a>
+    </div>
+</div>
