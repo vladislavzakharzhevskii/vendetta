@@ -1,13 +1,20 @@
 package com.vendettasoft.vendetta.models.hibernate;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import java.util.List;
 
 @Entity
-@Table(name = "computer_part")
-public class ComputerPart implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+@Table(name = "product")
+public class Product extends BaseModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,10 +34,9 @@ public class ComputerPart implements Serializable {
     @Column(name = "type")
     private String type;
 
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    @JoinTable(name = "order_computer_part",
-//            joinColumns = @JoinColumn(name = "order_pk"), inverseJoinColumns = @JoinColumn(name = "computer_part_pk"))
-//    private Order order;
+    @ManyToMany(mappedBy = "products", fetch = FetchType.LAZY)
+    @JsonBackReference
+    private List<ProductOrder> productOrders;
 
 
     public long getPk() {
@@ -73,11 +79,11 @@ public class ComputerPart implements Serializable {
         this.type = type;
     }
 
-//    public Order getOrder() {
-//        return order;
-//    }
-//
-//    public void setOrder(Order order) {
-//        this.order = order;
-//    }
+    public List<ProductOrder> getProductOrders() {
+        return productOrders;
+    }
+
+    public void setProductOrders(List<ProductOrder> productOrders) {
+        this.productOrders = productOrders;
+    }
 }

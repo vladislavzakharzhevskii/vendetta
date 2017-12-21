@@ -1,6 +1,6 @@
 package com.vendettasoft.vendetta.controllers.async.traini;
 
-import com.vendettasoft.vendetta.dao.ComputerDao;
+import com.vendettasoft.vendetta.dao.ProductDAO;
 import com.vendettasoft.vendetta.models.dto.ComputerOrderDTO;
 import com.vendettasoft.vendetta.models.traini.decorator.PartProductBase;
 import com.vendettasoft.vendetta.models.traini.decorator.Product;
@@ -24,7 +24,7 @@ public class ProductDecoratorController {
     private DecoratorService decoratorService;
 
     @Autowired
-    private ComputerDao computerDao;
+    private ProductDAO productDAO;
 
 
     @RequestMapping("/get-computers-data")

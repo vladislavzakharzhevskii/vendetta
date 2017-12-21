@@ -22,6 +22,9 @@ myApp.controller("ComputersController", ['$rootScope', '$scope', 'computerServic
 
 
         $scope.addEditProduct = function (editableProduct) {
+            /*clean model*/
+            $scope.computerModel = {};
+
             /*init*/
             $('#modal1').modal({
                 dismissible: false,

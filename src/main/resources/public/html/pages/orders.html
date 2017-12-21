@@ -1,4 +1,4 @@
-<div id="order-data" ng-controller="OrderController">
+<div id="productOrder-data" ng-controller="OrderController">
 
     <a class="btn waves-effect" ng-click="showOrderPopup();">Take Order</a>
     <!--include html with modal-->
@@ -6,6 +6,29 @@
 
 
 
+    <table class="highlight responsive-table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Client</th>
+            <th>Order Info</th>
+            <th>Delivery Date</th>
+            <th>Delivery Address</th>
+        </tr>
+        </thead>
 
-
+        <tbody>
+        <tr ng-repeat="order in orders">
+            <td>{{order.pk}}</td>
+            <td>{{order.firstName}} {{order.lastName}}</td>
+            <td class="center">
+                <span ng-repeat="product in order.products">
+                    &#9726; {{product.name}};
+                </span>
+            </td>
+            <td>{{order.deliveryDate | date:'MM/dd/yyyy'}}</td>
+            <td>{{order.deliveryAddress}}</td>
+        </tr>
+        </tbody>
+    </table>
 </div>

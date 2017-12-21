@@ -1,11 +1,9 @@
 package com.vendettasoft.vendetta.services;
 
-import com.vendettasoft.vendetta.models.hibernate.User;
-
-import java.util.List;
+import com.vendettasoft.vendetta.models.hibernate.ProductOrder;
 
 public interface OrderService {
 
-    void submitOrder(User user, Long basePart, List<Long> additionalParts);
+    void submitOrder(ProductOrder productOrder);
 
 }

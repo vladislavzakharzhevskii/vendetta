@@ -12,17 +12,17 @@
                 <h6>Client Info:</h6>
 
                 <div input-field class="col s4">
-                    <input type="text" ng-model="order.user.firstName">
+                    <input type="text" ng-model="order.firstName">
                     <label>First Name:</label>
                 </div>
 
                 <div input-field class="col s4">
-                    <input type="text" ng-model="order.user.lastName">
+                    <input type="text" ng-model="order.lastName">
                     <label>Last Name:</label>
                 </div>
 
                 <div input-field class="col s4">
-                    <input input-date type="text" format="dd/mm/yyyy" ng-model="order.user.dateBirthday">
+                    <input input-date type="text" format="dd/mm/yyyy" ng-model="order.birthdayDate">
                     <label>Date of Birthday:</label>
                 </div>
             </div>
@@ -46,6 +46,16 @@
                         <option ng-repeat="part in parsedComputersData['Additional']">{{part.name}}</option>
                     </select>
                     <label for="additionalParts">Additional Computer Parts</label>
+                </div>
+
+                <div input-field class="col s4">
+                    <input type="text" ng-model="order.deliveryAddress">
+                    <label>Delivery Address</label>
+                </div>
+
+                <div input-field class="col s4">
+                    <input input-date type="text" format="dd/mm/yyyy" ng-model="order.deliveryDate">
+                    <label>Delivery Date</label>
                 </div>
 
 

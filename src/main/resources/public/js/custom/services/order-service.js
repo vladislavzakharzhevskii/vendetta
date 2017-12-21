@@ -17,5 +17,20 @@ angular.module('myApp').factory('OrderService', ['$http', function ($http) {
         $http(req).then(successCallback, errorCallback);
     };
 
+
+    srv.getOrders = function (successCallback, errorCallback) {
+        var req = {
+            method: 'GET',
+            url: srv.controllerPath + "/getProductOrders",
+            headers: {
+                Accept: "application/json"
+            }
+        };
+
+        $http(req).then(successCallback, errorCallback);
+
+    };
+
+
     return srv;
 }]);

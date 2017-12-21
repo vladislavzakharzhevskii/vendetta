@@ -1,12 +1,16 @@
 package com.vendettasoft.vendetta.controllers.async;
 
-import com.vendettasoft.vendetta.models.dto.ComputerOrderDTO;
-import com.vendettasoft.vendetta.models.hibernate.User;
+import com.vendettasoft.vendetta.dao.OrderDAO;
+import com.vendettasoft.vendetta.dao.ProductDAO;
+import com.vendettasoft.vendetta.models.hibernate.ProductOrder;
 import com.vendettasoft.vendetta.services.OrderService;
-import com.vendettasoft.vendetta.utils.mvceditors.UserCustomEditor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/order")
@@ -15,17 +19,25 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @RequestMapping(value = "/submitComputerOrder", method = RequestMethod.POST)
-    public String submitComputerOrder(@ModelAttribute ComputerOrderDTO orderDTO) {
+    @Autowired
+    private OrderDAO orderDAO;
 
-        orderService.submitOrder(orderDTO.getUser(), orderDTO.getBaseComponentId(), orderDTO.getAdditionalComponentsIds());
+    @Autowired
+    private ProductDAO productDAO;
+
+    @RequestMapping(value = "/submitComputerOrder", method = RequestMethod.POST)
+    public String submitComputerOrder(@ModelAttribute ProductOrder productOrderDTO) {
+
+        orderService.submitOrder(productOrderDTO);
 
         return "has-ordered_" + "order_pk";
     }
 
 
-    @InitBinder
-    public void initBinder(WebDataBinder binder) {
-        binder.registerCustomEditor(User.class, new UserCustomEditor());
+    @RequestMapping(value = "/getProductOrders", method = RequestMethod.GET)
+    public List<ProductOrder> getOrders() {
+        return (List<ProductOrder>) orderDAO.findAll();
     }
+
+
 }

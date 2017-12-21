@@ -4,11 +4,17 @@ myApp.controller("OrderController", ['$rootScope', '$scope', 'computerService', 
     function ($rootScope, $scope, computerService, $filter, orderService) {
 
         $scope.order = {
-            user: {},
             base: {},
             additional: []
         };
 
+        var getOrders = function () {
+            orderService.getOrders(function (response) {
+                $scope.orders = response.data;
+            }, function (response) {});
+        };
+
+        getOrders();
 
         $scope.showOrderPopup = function () {
             $('#orderModal').modal({
@@ -46,21 +52,26 @@ myApp.controller("OrderController", ['$rootScope', '$scope', 'computerService', 
 
         /* SUBMIT FUNCTION */
         $scope.submitOrder = function () {
-            var preparedOrderData = {
-                user: $scope.order.user,
-                baseComponentId: $scope.order.base.pk,
-            };
+
+            var preparedOrderData = angular.copy($scope.order);
+
+            preparedOrderData.products = [];
+
+            /*get base part id*/
+            preparedOrderData.products.push($scope.order.base.pk);
+            delete preparedOrderData['base'];
+
 
             /*get additional parts id's*/
-            var addPks = [];
-            angular.forEach($scope.order.additional, function (value, key) {
-                addPks.push(value.pk);
-            });
 
-            preparedOrderData.additionalComponentsIds = addPks;
+            angular.forEach($scope.order.additional, function (value, key) {
+                preparedOrderData.products.push(value.pk);
+            });
+            delete preparedOrderData['additional'];
 
             orderService.submitOrder(preparedOrderData, function (response) {
                 $('#orderModal').modal('close');
+                getOrders();
             }, function (response) {
 
 
