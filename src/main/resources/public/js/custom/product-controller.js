@@ -1,4 +1,4 @@
-myApp.controller("ComputersController", ['$rootScope', '$scope', 'computerService',
+myApp.controller("ProductController", ['$rootScope', '$scope', 'ProductService',
     function ($rootScope, $scope, service) {
 
         $scope.computers = [];
@@ -66,5 +66,16 @@ myApp.controller("ComputersController", ['$rootScope', '$scope', 'computerServic
                 $rootScope.general.showPreloader = false;
             });
         };
+
+
+        $scope.deleteProduct = function (productPK, productName) {
+            service.deleteProduct(productPK, function (response) {
+                Materialize.toast("Product: '" + productName + "' has deleted." , 6000);
+                $scope.getComputers();
+            }, function (response) {
+
+            });
+        };
+
 
     }]);

@@ -4,6 +4,7 @@ import com.vendettasoft.vendetta.dao.OrderDAO;
 import com.vendettasoft.vendetta.dao.ProductDAO;
 import com.vendettasoft.vendetta.models.hibernate.Product;
 import com.vendettasoft.vendetta.models.hibernate.ProductOrder;
+import com.vendettasoft.vendetta.models.util.ProductOrderStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void submitOrder(ProductOrder productOrder) {
+
+        productOrder.setOrderStatus(ProductOrderStatus.NEW);
 
         /* calculate total sum */
         double totalSum = 0.0;

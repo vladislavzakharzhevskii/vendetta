@@ -1,7 +1,7 @@
 
 
-myApp.controller("OrderController", ['$rootScope', '$scope', 'computerService', '$filter', 'OrderService',
-    function ($rootScope, $scope, computerService, $filter, orderService) {
+myApp.controller("OrderController", ['$rootScope', '$scope', 'ProductService', '$filter', 'OrderService',
+    function ($rootScope, $scope, productService, $filter, orderService) {
 
         $scope.order = {
             base: {},
@@ -26,7 +26,7 @@ myApp.controller("OrderController", ['$rootScope', '$scope', 'computerService', 
 
         /* declare method to get data to order popup*/
         $scope.getOrderPopupData = function () {
-            computerService.getParsedComputers(function (response) {
+            productService.getParsedComputers(function (response) {
                 $scope.parsedComputersData = response.data;
             }, function (response) {});
         };
@@ -69,6 +69,10 @@ myApp.controller("OrderController", ['$rootScope', '$scope', 'computerService', 
             });
             delete preparedOrderData['additional'];
 
+            preparedOrderData.deliveryDate = getDateWithTime(preparedOrderData.deliveryDate, preparedOrderData.temp.deliveryTime);
+            delete preparedOrderData['temp'];
+
+
             orderService.submitOrder(preparedOrderData, function (response) {
                 $('#orderModal').modal('close');
                 getOrders();
@@ -76,6 +80,18 @@ myApp.controller("OrderController", ['$rootScope', '$scope', 'computerService', 
 
 
             });
+        };
+
+
+        var getDateWithTime = function (dateAsString, timeAsString) {
+
+            var resStringFullDate = dateAsString + 'T' + timeAsString + ":00";/*TODO FIND MORE CONVENIENT WAY*/
+
+            var date = new Date(resStringFullDate);
+
+            date.setTime(date.getTime() + (date.getTimezoneOffset() * 60 * 1000)); /*TODO IS IT TO MORE CONVENIENT WAY TO SET TimeZone*/
+
+            return date.getTime();
         };
 
 

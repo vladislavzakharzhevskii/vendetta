@@ -1,5 +1,5 @@
 
-<div id="computers-content" class="row" ng-controller="ComputersController">
+<div id="computers-content" class="row" ng-controller="ProductController">
     <table class="highlight responsive-table">
         <thead>
         <tr>
@@ -20,7 +20,7 @@
             <td>{{computer.type}}</td>
             <td>{{computer.cost}}$</td>
             <td class="right">
-                <a class="btn-floating red"  ng-click=""><i class="material-icons">remove</i></a>
+                <a class="btn-floating red"  ng-click="deleteProduct(computer.pk, computer.name)"><i class="material-icons">remove</i></a>
                 <a class="btn-floating blue" ng-click="addEditProduct(computer);"><i class="material-icons">edit</i></a>
             </td>
         </tr>

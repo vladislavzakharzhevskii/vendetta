@@ -1,4 +1,4 @@
-angular.module('myApp').factory('computerService', ['$http', function ($http) {
+angular.module('myApp').factory('ProductService', ['$http', function ($http) {
 
     var srv = {};
 
@@ -37,6 +37,20 @@ angular.module('myApp').factory('computerService', ['$http', function ($http) {
         };
 
         $http(req).then(successCallback, failureCallback);
+    };
+
+
+    srv.deleteProduct = function (productId, successCallback, errorCallback) {
+        var req = {
+            method: 'POST',
+            url: '/deleteProduct',
+            params: {productPk: productId},
+            headers: {
+                Access: 'text/html'
+            }
+        };
+
+        $http(req).then(successCallback, errorCallback);
     };
 
 

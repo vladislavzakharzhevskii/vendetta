@@ -1,16 +1,9 @@
 package com.vendettasoft.vendetta.models.hibernate;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.vendettasoft.vendetta.models.util.ProductOrderStatus;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -51,6 +44,10 @@ public class ProductOrder extends BaseModel {
 
     @Column(name = "totalCost")
     private Double totalCost;
+
+    @Column(name = "orderStatus")
+    @Enumerated(EnumType.STRING)
+    private ProductOrderStatus orderStatus;
 
     public Long getPk() {
         return pk;
@@ -114,5 +111,13 @@ public class ProductOrder extends BaseModel {
 
     public void setTotalCost(Double totalCost) {
         this.totalCost = totalCost;
+    }
+
+    public ProductOrderStatus getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(ProductOrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
     }
 }

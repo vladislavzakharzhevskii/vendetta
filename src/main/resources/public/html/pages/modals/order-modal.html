@@ -22,7 +22,7 @@
                 </div>
 
                 <div input-field class="col s4">
-                    <input input-date type="text" format="dd/mm/yyyy" ng-model="order.birthdayDate">
+                    <input input-date type="text" data-select-years="200" format="dd/mm/yyyy" ng-model="order.birthdayDate">
                     <label>Date of Birthday:</label>
                 </div>
             </div>
@@ -47,46 +47,57 @@
                     </select>
                     <label for="additionalParts">Additional Computer Parts</label>
                 </div>
+            </div>
 
-                <div input-field class="col s4">
+            <div class="row">
+
+                <h6>Delivery Info:</h6>
+
+
+                <div input-field class="col s3">
+                    <input input-date type="text" format="yyyy-mm-dd" ng-model="order.deliveryDate">
+                    <label>Delivery Date</label>
+                </div>
+
+                <div input-field class="col s3">
+                    <input input-clock data-twelvehour="false" type="text" ng-model="order.temp.deliveryTime">
+                    <label>Delivery Time</label>
+                </div>
+
+
+                <div input-field class="col s6">
                     <input type="text" ng-model="order.deliveryAddress">
                     <label>Delivery Address</label>
                 </div>
 
-                <div input-field class="col s4">
-                    <input input-date type="text" format="dd/mm/yyyy" ng-model="order.deliveryDate">
-                    <label>Delivery Date</label>
+            </div>
+
+            <p>
+                <input type="checkbox" class="filled-in" id="filled-in-box" ng-model="checked"/>
+                <label for="filled-in-box">Do you agree with 'Terms and Conditions' instructures</label>
+            </p>
+
+
+            <div ng-if="checked">
+                <h5>You Order</h5>
+
+                <div class="">
+                    <span>Main Part: {{order.base.name}} &#8211</span>
+                    <span class="regular">{{order.base.cost}}$</span>
                 </div>
 
-
-                <p>
-                    <input type="checkbox" class="filled-in" id="filled-in-box" ng-model="checked"/>
-                    <label for="filled-in-box">Do you agree with 'Terms and Conditions' instructures</label>
-                </p>
-
-
-                <div ng-if="checked">
-                    <h5>You Order</h5>
-
-                    <div class="">
-                        <span>Main Part: {{order.base.name}} &#8211</span>
-                        <span class="regular">{{order.base.cost}}$</span>
-                    </div>
-
-                    <div class="">
-                        <span>Additional Parts:</span>
-                        <span ng-repeat="part in order.additional">
+                <div class="">
+                    <span>Additional Parts:</span>
+                    <span ng-repeat="part in order.additional">
                             <span>{{part.name}} &#8211</span>
                             <span>{{part.cost}}$ </span>
                         </span>
-                    </div>
+                </div>
 
-                    <div class="right">
+                <div class="right">
                         <span class="bold">
                             <h5>Total Cost is:  {{getTotalCost();}} </h5>
                         </span>
-
-                    </div>
 
                 </div>
 
@@ -97,7 +108,7 @@
 
     </div>
     <div class="modal-footer">
-        <a href="#!" class="btn-flat modal-action modal-close waves-effect waves-green left">Close</a>
+        <a href="#!" class="btn-flat modal-action modal-close waves-effect waves-red left">Close</a>
         <a href="#!" class="btn blue right" ng-click="submitOrder();">Submit</a>
     </div>
 </div>

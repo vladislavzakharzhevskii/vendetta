@@ -5,11 +5,7 @@ import com.vendettasoft.vendetta.dao.ProductDAO;
 import com.vendettasoft.vendetta.dao.UserDAO;
 import com.vendettasoft.vendetta.models.hibernate.Product;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,8 +29,8 @@ public class ProductController {
     private OrderDAO orderDAO;
 
 
-    @RequestMapping("/getComputers")
 
+    @RequestMapping("/getComputers")
     public List<Product> getComputers() {
 
         Iterable<Product> computerParts = productDAO.findAllByOrderByPkAsc();
@@ -73,8 +69,10 @@ public class ProductController {
 
     @RequestMapping(value = "/deleteProduct", method = RequestMethod.POST)
     public Long deleteProduct(@RequestParam Long productPk) {
+
         productDAO.delete(productPk);
         return productPk;
     }
+
 
 }
