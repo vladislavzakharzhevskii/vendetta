@@ -1,5 +1,6 @@
 var myApp = angular.module('myApp',[
     'ui.materialize',
     'ngRoute',
-    'ngSanitize'
+    'ngSanitize',
+    'oitozero.ngSweetAlert'
 ]);

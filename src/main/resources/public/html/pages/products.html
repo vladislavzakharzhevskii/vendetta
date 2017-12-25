@@ -13,15 +13,19 @@
         </thead>
 
         <tbody>
-        <tr ng-repeat="computer in computers">
-            <td>{{computer.pk}}</td>
-            <td>{{computer.name}}</td>
-            <td>{{computer.description}}</td>
-            <td>{{computer.type}}</td>
-            <td>{{computer.cost}}$</td>
+        <tr ng-repeat="product in computers">
+            <td>{{product.pk}}</td>
+            <td>{{product.name}}</td>
+            <td>{{product.description}}</td>
+            <td>{{product.type}}</td>
+            <td>{{product.cost}} &#8372;</td>
             <td class="right">
-                <a class="btn-floating red"  ng-click="deleteProduct(computer.pk, computer.name)"><i class="material-icons">remove</i></a>
-                <a class="btn-floating blue" ng-click="addEditProduct(computer);"><i class="material-icons">edit</i></a>
+                <a class="btn-floating red" title="Delete" ng-click="deleteProduct(product.pk, product.name)">
+                    <i class="material-icons">remove</i>
+                </a>
+                <a class="btn-floating blue" title="Edit" ng-click="addEditProduct(product);">
+                    <i class="material-icons">edit</i>
+                </a>
             </td>
         </tr>
         </tbody>
@@ -33,7 +37,7 @@
     </a>
 
 
-    <div ng-include="'html/pages/modals/computerForm-modal.html'"></div>
+    <div ng-include="'html/pages/modals/actions-product-modal.html'"></div>
 
 
 

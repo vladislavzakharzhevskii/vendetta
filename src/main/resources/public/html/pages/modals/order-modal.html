@@ -82,21 +82,21 @@
                 <h5>You Order</h5>
 
                 <div class="">
-                    <span>Main Part: {{order.base.name}} &#8211</span>
-                    <span class="regular">{{order.base.cost}}$</span>
+                    <span>Main Part: {{order.base.name}} &#8211;</span>
+                    <span class="regular">{{order.base.cost}} &#8372;</span>
                 </div>
 
                 <div class="">
                     <span>Additional Parts:</span>
                     <span ng-repeat="part in order.additional">
-                            <span>{{part.name}} &#8211</span>
-                            <span>{{part.cost}}$ </span>
+                            <span>{{part.name}} &#8211;</span>
+                            <span>{{part.cost}} &#8372; </span>
                         </span>
                 </div>
 
                 <div class="right">
                         <span class="bold">
-                            <h5>Total Cost is:  {{getTotalCost();}} </h5>
+                            <h5>Total Cost is:  {{getTotalCost();}} Грн.</h5>
                         </span>
 
                 </div>
@@ -109,6 +109,6 @@
     </div>
     <div class="modal-footer">
         <a href="#!" class="btn-flat modal-action modal-close waves-effect waves-red left">Close</a>
-        <a href="#!" class="btn blue right" ng-click="submitOrder();">Submit</a>
+        <a href="#!" class="btn blue right" ng-class="!checked ? 'disabled' : ''" ng-click="submitOrder();">Submit</a>
     </div>
 </div>

@@ -28,7 +28,22 @@ angular.module('myApp').factory('OrderService', ['$http', function ($http) {
         };
 
         $http(req).then(successCallback, errorCallback);
+    };
 
+    srv.changeOrderStatus = function (orderId, newStatus, successCallback, errorCallback) {
+        var req = {
+            method: 'POST',
+            url: srv.controllerPath + "/changeOrdersStatus",
+            params: {
+                pk: orderId,
+                newOrderStatus: newStatus
+            },
+            headers: {
+                Accept: "application/json"
+            }
+        };
+
+        $http(req).then(successCallback, errorCallback);
     };
 
 

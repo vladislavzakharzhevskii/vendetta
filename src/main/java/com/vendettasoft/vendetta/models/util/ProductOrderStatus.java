@@ -5,7 +5,9 @@ public enum ProductOrderStatus {
     NEW("New"),
     IN_DELIVERING("In Delivering"),
     COMPLETED("Completed"),
-    EXPIRED("Expired");
+    EXPIRED("Expired"),
+    DISRUPTED("Disrupted");
+
 
 
     private String name;

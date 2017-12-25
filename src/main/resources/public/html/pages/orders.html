@@ -1,4 +1,4 @@
-<div id="productOrder-data" ng-controller="OrderController">
+<div id="order-data" ng-controller="OrderController">
 
     <a class="btn waves-effect" ng-click="showOrderPopup();">Take Order</a>
     <!--include html with modal-->
@@ -15,7 +15,9 @@
             <th>Order Info</th>
             <th>Delivery Time</th>
             <th>Delivery Address</th>
+            <th>Total Cost</th>
             <th>Status</th>
+            <th></th>
         </tr>
         </thead>
 
@@ -26,14 +28,35 @@
                 <i class="material-icons prefix ng-scope">local_shipping</i>
             </td>
             <td>{{order.firstName}} {{order.lastName}}</td>
-            <td class="">
-                <span ng-repeat="product in order.products">
-                    &#9726; {{product.name}};
-                </span>
+            <td>
+                <ul type="square">
+                    <li ng-repeat="product in order.products">
+                        &#9726; {{product.name}};
+                    </li>
+                </ul>
             </td>
             <td>{{order.deliveryDate | date:'MM-dd-yyyy h:mm a'}}</td>
             <td>{{order.deliveryAddress}}</td>
-            <td>{{order.orderStatus}}</td>
+            <td>{{order.totalCost}}&#8372;</td>
+            <td>
+                <span class="new badge" ng-class="getOrderStatusColor(order.orderStatus);" data-badge-caption="">{{order.orderStatus}}</span>
+            </td>
+            <td>
+                <div ng-switch="order.orderStatus">
+                    <span ng-switch-when="NEW">
+                        <div class="row">
+                            <button type="button">Schedule</button>
+                            <!--<i class="material-icons">info</i>-->
+                        </div>
+                    </span>
+                    <span ng-switch-when="COMPLETED">
+                        <button type="button">View</button>
+                    </span>
+                    <span ng-switch-when="IN_DELIVERING">
+                        <button type="button">Info</button>
+                    </span>
+                </div>
+            </td>
         </tr>
         </tbody>
     </table>

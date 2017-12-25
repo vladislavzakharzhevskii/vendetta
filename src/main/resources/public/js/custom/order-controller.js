@@ -1,7 +1,7 @@
 
 
-myApp.controller("OrderController", ['$rootScope', '$scope', 'ProductService', '$filter', 'OrderService',
-    function ($rootScope, $scope, productService, $filter, orderService) {
+myApp.controller("OrderController", ['$rootScope', '$scope', 'ProductService', '$filter', 'OrderService', 'OrderServiceUtil',
+    function ($rootScope, $scope, productService, $filter, orderService, orderServiceUtil) {
 
         $scope.order = {
             base: {},
@@ -10,11 +10,49 @@ myApp.controller("OrderController", ['$rootScope', '$scope', 'ProductService', '
 
         var getOrders = function () {
             orderService.getOrders(function (response) {
-                $scope.orders = response.data;
+                $scope.orders = response.data.orders;
+
+                var receiveRequests = response.data.receiveRequests;
+
+                orderServiceUtil.confirmReceive(receiveRequests, Object.keys(receiveRequests), 0,
+                    function changeStatusToComplete(orderId) {
+                        var complete_status = 'COMPLETED';
+                        orderService.changeOrderStatus(orderId, complete_status);
+                        $filter('filter')($scope.orders, {pk: orderId})[0].orderStatus = complete_status;
+                    },
+                    function changeStatusToDisrupted(orderId) {
+                        var disrupted_status = 'DISRUPTED';
+                        orderService.changeOrderStatus(orderId, disrupted_status);
+                        $filter('filter')($scope.orders, {pk: orderId})[0].orderStatus = disrupted_status;
+
+                    }
+                );
+
+
             }, function (response) {});
         };
 
         getOrders();
+
+        $scope.getOrderStatusColor = function (status) {
+            if (status === 'NEW') {
+                return "blue";
+            } else {
+                if (status === 'COMPLETED') {
+                    return "green";
+                }
+                else {
+                    if (status === 'IN_DELIVERING') {
+                        return 'yellow';
+                    } else {
+                        if (status === 'EXPIRED' || status === 'DISRUPTED') {
+                            return 'red';
+                        }
+
+                    }
+                }
+            }
+        };
 
         $scope.showOrderPopup = function () {
             $('#orderModal').modal({
@@ -93,6 +131,11 @@ myApp.controller("OrderController", ['$rootScope', '$scope', 'ProductService', '
 
             return date.getTime();
         };
+
+
+
+
+
 
 
 }]);

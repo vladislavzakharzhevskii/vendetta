@@ -2,7 +2,7 @@ package com.vendettasoft.vendetta.controllers.async;
 
 import com.vendettasoft.vendetta.dao.OrderDAO;
 import com.vendettasoft.vendetta.models.dto.Client;
-import com.vendettasoft.vendetta.models.hibernate.ProductOrder;
+import com.vendettasoft.vendetta.models.hibernate.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,10 +20,10 @@ public class ClientsController {
 
     @RequestMapping(value = "/getClients", method = RequestMethod.GET)
     public Set<Client> getAllClients() {
-        Iterable<ProductOrder> orders = orderDAO.findAll();
+        Iterable<Order> orders = orderDAO.findAll();
 
         Set<Client> clients = new HashSet<>();
-        for (ProductOrder order : orders) {
+        for (Order order : orders) {
             Client client = new Client();
             client.setFirstName(order.getFirstName());
             client.setLastName(order.getLastName());

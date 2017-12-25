@@ -2,13 +2,17 @@ package com.vendettasoft.vendetta.services;
 
 import com.vendettasoft.vendetta.dao.OrderDAO;
 import com.vendettasoft.vendetta.dao.ProductDAO;
+import com.vendettasoft.vendetta.models.dto.OrdersDTO;
+import com.vendettasoft.vendetta.models.hibernate.Order;
 import com.vendettasoft.vendetta.models.hibernate.Product;
-import com.vendettasoft.vendetta.models.hibernate.ProductOrder;
 import com.vendettasoft.vendetta.models.util.ProductOrderStatus;
+import com.vendettasoft.vendetta.utils.OrderStatusResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -21,18 +25,38 @@ public class OrderServiceImpl implements OrderService {
     private OrderDAO orderDAO;
 
     @Override
-    public void submitOrder(ProductOrder productOrder) {
+    public void submitOrder(Order order) {
 
-        productOrder.setOrderStatus(ProductOrderStatus.NEW);
+        order.setOrderStatus(ProductOrderStatus.NEW);
 
         /* calculate total sum */
         double totalSum = 0.0;
-        for (Product product : productOrder.getProducts()) {
+        for (Product product : order.getProducts()) {
             totalSum += product.getCost();
         }
-        productOrder.setTotalCost(totalSum);
+        order.setTotalCost(totalSum);
 
 
-        orderDAO.save(productOrder);
+        orderDAO.save(order);
     }
+
+    @Override
+    public OrdersDTO findAllByOrderByPkDesc() {
+        final OrdersDTO ordersDTO = new OrdersDTO();
+
+        List<Order> orders = orderDAO.findAllByOrderByPkDesc();
+        ordersDTO.setOrders(orders);
+
+        /*recalculate statuses*/
+        /*we need to set status depends on delivery date*/
+        OrderStatusResolver orderStatusResolver = new OrderStatusResolver(orderDAO, orders);
+        orderStatusResolver.reviewOrdersStatuses();
+
+        Map<String, Order> receiveRequests = orderStatusResolver.getReceiveRequests();
+        ordersDTO.setReceiveRequests(receiveRequests);
+
+        return ordersDTO;
+    }
+
+
 }

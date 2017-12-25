@@ -8,8 +8,8 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "product_order")
-public class ProductOrder extends BaseModel {
+@Table(name = "orders")
+public class Order extends BaseModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +31,7 @@ public class ProductOrder extends BaseModel {
 
 
     @ManyToMany
-    @JoinTable( name = "product_order_product",
+    @JoinTable( name = "orders_products",
             joinColumns = { @JoinColumn(name = "order_pk") },
             inverseJoinColumns = { @JoinColumn(name = "product_pk") }
     )

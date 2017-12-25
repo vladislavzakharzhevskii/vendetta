@@ -2,18 +2,11 @@ package com.vendettasoft.vendetta.models.hibernate;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "product")
+@Table(name = "products")
 public class Product extends BaseModel {
 
     @Id
@@ -36,7 +29,7 @@ public class Product extends BaseModel {
 
     @ManyToMany(mappedBy = "products", fetch = FetchType.LAZY)
     @JsonBackReference
-    private List<ProductOrder> productOrders;
+    private List<Order> orders;
 
 
     public long getPk() {
@@ -79,11 +72,11 @@ public class Product extends BaseModel {
         this.type = type;
     }
 
-    public List<ProductOrder> getProductOrders() {
-        return productOrders;
+    public List<Order> getOrders() {
+        return orders;
     }
 
-    public void setProductOrders(List<ProductOrder> productOrders) {
-        this.productOrders = productOrders;
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }

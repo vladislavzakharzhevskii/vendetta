@@ -1,9 +1,12 @@
 package com.vendettasoft.vendetta.services;
 
-import com.vendettasoft.vendetta.models.hibernate.ProductOrder;
+import com.vendettasoft.vendetta.models.dto.OrdersDTO;
+import com.vendettasoft.vendetta.models.hibernate.Order;
 
 public interface OrderService {
 
-    void submitOrder(ProductOrder productOrder);
+    void submitOrder(Order order);
+
+    OrdersDTO findAllByOrderByPkDesc();
 
 }

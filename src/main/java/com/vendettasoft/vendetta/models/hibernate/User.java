@@ -1,11 +1,6 @@
 package com.vendettasoft.vendetta.models.hibernate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -31,7 +26,7 @@ public class User extends BaseModel {
     private Double discount;
 
 //    @OneToOne(mappedBy = "owner", fetch = FetchType.LAZY)
-//    private ProductOrder order;
+//    private Order order;
 
 
     public Long getPk() {
