@@ -31,21 +31,12 @@
                 <h6>Order Info:</h6>
 
                 <div input-field class="col s6">
-                    <select id="mainPart" material-select watch ng-model="order.base"
-                            ng-options="item as item.name for item in parsedComputersData['Base']">
-                        <option value="" disabled>Choose Base Model:</option>
-                        <option ng-repeat="basePart in parsedComputersData['Base']">{{basePart.name}}</option>
+                    <select id="products" material-select multiple watch ng-model="order.selectedProducts"
+                            ng-options="item as item.name for item in orderProductData">
+                        <option value="" disabled>Choose Order's Items</option>
+                        <option ng-repeat="product in orderProductData">{{product.name}}</option>
                     </select>
-                    <label for="mainPart">Main Computer Part</label>
-                </div>
-
-                <div input-field class="col s6">
-                    <select id="additionalParts" material-select multiple watch ng-model="order.additional"
-                            ng-options="item as item.name for item in parsedComputersData['Additional']">
-                        <option value="" disabled>Choose Additional Parts:</option>
-                        <option ng-repeat="part in parsedComputersData['Additional']">{{part.name}}</option>
-                    </select>
-                    <label for="additionalParts">Additional Computer Parts</label>
+                    <label for="products">Selected Items</label>
                 </div>
             </div>
 
@@ -81,21 +72,16 @@
             <div ng-if="checked">
                 <h5>You Order</h5>
 
-                <div class="">
-                    <span>Main Part: {{order.base.name}} &#8211;</span>
-                    <span class="regular">{{order.base.cost}} &#8372;</span>
-                </div>
-
-                <div class="">
-                    <span>Additional Parts:</span>
-                    <span ng-repeat="part in order.additional">
-                            <span>{{part.name}} &#8211;</span>
-                            <span>{{part.cost}} &#8372; </span>
+                <div>
+                    <h6>Selected Items:</h6>
+                    <span ng-repeat="selectedItem in order.selectedProducts">
+                            <span>{{selectedItem.name}} &#8211;</span>
+                            <span>{{selectedItem.cost}} грн.</span>
                         </span>
                 </div>
 
                 <div class="right">
-                        <span class="bold">
+                        <span>
                             <h5>Total Cost is:  {{getTotalCost();}} Грн.</h5>
                         </span>
 

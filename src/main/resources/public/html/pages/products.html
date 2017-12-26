@@ -6,7 +6,6 @@
             <th>Id</th>
             <th>Name</th>
             <th>Description</th>
-            <th>Type</th>
             <th>Cost</th>
             <th class="right">Actions</th>
         </tr>
@@ -17,7 +16,6 @@
             <td>{{product.pk}}</td>
             <td>{{product.name}}</td>
             <td>{{product.description}}</td>
-            <td>{{product.type}}</td>
             <td>{{product.cost}} &#8372;</td>
             <td class="right">
                 <a class="btn-floating red" title="Delete" ng-click="deleteProduct(product.pk, product.name)">

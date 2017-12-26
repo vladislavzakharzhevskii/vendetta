@@ -6,20 +6,7 @@ angular.module('myApp').factory('ProductService', ['$http', function ($http) {
 
         var req = {
             method: 'GET',
-            url: '/getComputers',
-            headers: {
-                Accept: 'application/json'
-            }
-        };
-
-        $http(req).then(successCallback, failureCallback);
-    };
-
-    srv.getParsedComputers = function (successCallback, failureCallback) {
-
-        var req = {
-            method: 'POST',
-            url: '/getParsedComputerParts',
+            url: '/getProducts',
             headers: {
                 Accept: 'application/json'
             }
@@ -29,11 +16,11 @@ angular.module('myApp').factory('ProductService', ['$http', function ($http) {
     };
 
 
-    srv.saveComputer = function (compData, successCallback, failureCallback) {
+    srv.saveProduct = function (data, successCallback, failureCallback) {
         var req = {
             method: 'POST',
-            url: '/saveComputerPart',
-            params: compData
+            url: '/saveProduct',
+            params: data
         };
 
         $http(req).then(successCallback, failureCallback);

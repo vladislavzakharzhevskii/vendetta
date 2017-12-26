@@ -20,12 +20,8 @@ public class Product extends BaseModel {
     @Column(name = "description")
     private String description;
 
-
     @Column(name = "cost")
     private Double cost;
-
-    @Column(name = "type")
-    private String type;
 
     @ManyToMany(mappedBy = "products", fetch = FetchType.LAZY)
     @JsonBackReference
@@ -62,14 +58,6 @@ public class Product extends BaseModel {
 
     public void setCost(Double cost) {
         this.cost = cost;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public List<Order> getOrders() {

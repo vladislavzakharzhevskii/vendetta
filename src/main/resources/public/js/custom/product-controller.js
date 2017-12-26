@@ -55,7 +55,7 @@ myApp.controller("ProductController", ['$rootScope', '$scope', 'ProductService',
 
 
 
-            service.saveComputer($scope.computerModel, function (response) {
+            service.saveProduct($scope.computerModel, function (response) {
                 $rootScope.general.showPreloader = false;
                 $scope.computerModel = {};
                 $('#modal1').modal('close');
