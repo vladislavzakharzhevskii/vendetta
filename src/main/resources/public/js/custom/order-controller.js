@@ -133,7 +133,13 @@ myApp.controller("OrderController", ['$rootScope', '$scope', 'ProductService', '
         };
 
 
+        $scope.defineDelivery = function (orderPk) {
 
+            orderService.changeOrderStatus(orderPk, 'IN_DELIVERING',
+                function successCallback(response) {
+                    $filter('filter')($scope.orders, {pk: orderPk})[0].orderStatus = 'IN_DELIVERING';},
+                function errorCallback(response) {});
+        };
 
 
 

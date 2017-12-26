@@ -45,8 +45,7 @@
                 <div ng-switch="order.orderStatus">
                     <span ng-switch-when="NEW">
                         <div class="row">
-                            <button type="button">Schedule</button>
-                            <!--<i class="material-icons">info</i>-->
+                            <button type="button" ng-click="defineDelivery(order.pk)">Schedule</button>
                         </div>
                     </span>
                     <span ng-switch-when="COMPLETED">
