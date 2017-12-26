@@ -1,8 +1,9 @@
 
 
-myApp.controller("OrderController", ['$rootScope', '$scope', 'ProductService', '$filter', 'OrderService', 'OrderServiceUtil',
-    function ($rootScope, $scope, productService, $filter, orderService, orderServiceUtil) {
+myApp.controller("OrderController", ['$rootScope', '$scope', 'Utils', 'ProductService', '$filter', 'OrderService', 'OrderServiceUtil',
+    function ($rootScope, $scope, appUtils, productService, $filter, orderService, orderServiceUtil) {
 
+        var currentTimeDate = new Date();
         $scope.order = {
             selectedProducts: [],
             temp: {}
@@ -79,6 +80,14 @@ myApp.controller("OrderController", ['$rootScope', '$scope', 'ProductService', '
             /*todo rename method*/
             productService.getComputers(function (response) {
                 $rootScope.general.showPreloader = false;
+
+                /*Set Up Delivery Time and Date*/
+                var current = new Date();
+                $scope.order.deliveryDate = new Date(current.getFullYear(), current.getMonth(), current.getDate());
+                current.setTime(current.getTime() + (60 * 60 * 1000));
+                $scope.order.temp = {deliveryTime: appUtils.formatAMPM(current)};
+
+
                 $scope.orderProductData = response.data;
                 $('#orderModal').modal('open');
             }, function (response) {});
@@ -123,20 +132,18 @@ myApp.controller("OrderController", ['$rootScope', '$scope', 'ProductService', '
                 $('#orderModal').modal('close');
                 $scope.order = {};
                 getOrders();
-            }, function (response) {
-
+            }, function () {
+                $scope.order = {};
 
             });
         };
 
 
-        var getDateWithTime = function (dateAsString, timeAsString) {
+        var getDateWithTime = function (date, PMAMTimeValue) {
 
-            var resStringFullDate = dateAsString + 'T' + timeAsString + ":00";/*TODO FIND MORE CONVENIENT WAY*/
+            var convertedTime = appUtils.convertTimeTo24Hour(PMAMTimeValue);
 
-            var date = new Date(resStringFullDate);
-
-            date.setTime(date.getTime() + (date.getTimezoneOffset() * 60 * 1000)); /*TODO IS IT TO MORE CONVENIENT WAY TO SET TimeZone*/
+            date.setTime(date.getTime() + (convertedTime.hours * 60 * 60 * 1000) + (convertedTime.minutes * 60 * 1000));
 
             return date.getTime();
         };

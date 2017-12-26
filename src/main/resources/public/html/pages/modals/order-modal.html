@@ -12,18 +12,18 @@
                 <h6>Client Info:</h6>
 
                 <div input-field class="col s4">
-                    <input type="text" ng-model="order.firstName">
-                    <label>First Name:</label>
+                    <input id="firstName" type="text" ng-model="order.firstName">
+                    <label for="firstName">First Name:</label>
                 </div>
 
                 <div input-field class="col s4">
-                    <input type="text" ng-model="order.lastName">
-                    <label>Last Name:</label>
+                    <input id="lastName" type="text" ng-model="order.lastName">
+                    <label for="lastName">Last Name:</label>
                 </div>
 
                 <div input-field class="col s4">
-                    <input input-date type="text" data-select-years="200" format="dd/mm/yyyy" ng-model="order.birthdayDate">
-                    <label>Date of Birthday:</label>
+                    <input id="birthdayDate" input-date type="text" data-select-years="200" data-format="dd/mm/yyyy" ng-model="order.birthdayDate">
+                    <label for="birthdayDate">Date of Birthday:</label>
                 </div>
             </div>
 
@@ -31,7 +31,7 @@
                 <h6>Order Info:</h6>
 
                 <div input-field class="col s6">
-                    <select id="products" material-select multiple watch ng-model="order.selectedProducts"
+                    <select id="products" material-select multiple data-watch ng-model="order.selectedProducts"
                             ng-options="item as item.name for item in orderProductData">
                         <option value="" disabled>Choose Order's Items</option>
                         <option ng-repeat="product in orderProductData">{{product.name}}</option>
@@ -46,21 +46,33 @@
 
 
                 <div input-field class="col s3">
-                    <input input-date type="text" format="yyyy-mm-dd" ng-model="order.deliveryDate">
-                    <label>Delivery Date</label>
+                    <input id="deliveryDate" input-date type="text" data-format="yyyy-mm-dd" ng-model="order.deliveryDate" disabled>
+                    <label for="deliveryDate">Delivery Date</label>
                 </div>
 
                 <div input-field class="col s3">
-                    <input input-clock data-twelvehour="false" type="text" ng-model="order.temp.deliveryTime">
-                    <label>Delivery Time</label>
+                    <input id="deliveryTime" input-clock data-twelvehour="true" type="text" ng-model="order.temp.deliveryTime"
+                           data-donetext="Set Time" data-canceltext="Close" data-cleartext="Clear Time"
+                           data-default="now" data-fromnow="0" data-autoclose="false" data-ampmclickable="true">
+                    <label for="deliveryTime">Delivery Time</label>
                 </div>
 
 
                 <div input-field class="col s6">
-                    <input type="text" ng-model="order.deliveryAddress">
-                    <label>Delivery Address</label>
+                    <input id="deliveryAddress" type="text" ng-model="order.deliveryAddress">
+                    <label for="deliveryAddress">Delivery Address</label>
                 </div>
 
+            </div>
+
+            <!--ERROR and NOTIFICATION line-->
+            <div class="row" style="margin-top: -35px" id="error-line">
+                <div class="col s3">
+                    <span style="font-size: 11px">*Set Up automatically for better experience.</span>
+                </div>
+                <div class="col s3">
+                    <span style="font-size: 11px">*You can't chose the time in the past.</span>
+                </div>
             </div>
 
             <p>
