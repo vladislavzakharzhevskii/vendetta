@@ -16,14 +16,18 @@ angular.module('myApp').factory('ProductService', ['$http', function ($http) {
     };
 
 
-    srv.saveProduct = function (data, successCallback, failureCallback) {
+    srv.saveProduct = function (formData, sCallback, eCallback) {
         var req = {
             method: 'POST',
             url: '/saveProduct',
-            params: data
+            data: formData,
+            headers: {
+                'Content-Type': undefined
+            },
+            transformRequest: angular.identity         /*prevent Serialization data by Angular*/
         };
 
-        $http(req).then(successCallback, failureCallback);
+        $http(req).then(sCallback, eCallback);
     };
 
 
@@ -41,6 +45,15 @@ angular.module('myApp').factory('ProductService', ['$http', function ($http) {
     };
 
 
+    srv.deleteProductImage = function (pk, successCallback, failureCallback) {
+        var req = {
+            method: 'GET',
+            url: '/deleteProductImage',
+            params: {productImagePk: pk}
+        };
+
+        $http(req).then(successCallback, failureCallback);
+    };
 
 
     return srv;

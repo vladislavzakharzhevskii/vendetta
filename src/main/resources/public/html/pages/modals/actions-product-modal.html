@@ -8,14 +8,22 @@
 
             <div input-field class="col s7">
                 <i class="material-icons prefix">local_shipping</i>
-                <input id="name" type="text" ng-model="computerModel.name">
+                <input id="name" type="text" ng-model="productModel.name">
                 <label for="name">Product Name:</label>
             </div>
-
+            <div id="image-preview" class="col s5">
+                <div ng-if="previewImages">
+                    <div style="width: 75px" class="right" ng-repeat="image in previewImages">
+                        <i id="removePreviewButton" class="material-icons" ng-click="deleteProductImage(image);" title="Delete">delete</i>
+                        <img title="{{image.name}}" width="75" height="75" ng-src="data:image/png;base64, {{image.lob}}">
+                        </br>
+                    </div>
+                </div>
+            </div>
 
             <div input-field class=" col s7">
                 <i class="material-icons prefix">edit</i>
-                <textarea id="desc" class="materialize-textarea" data-length="150" ng-model="computerModel.description"></textarea>
+                <textarea id="desc" class="materialize-textarea" data-length="150" ng-model="productModel.description"></textarea>
                 <label for="desc">Description:</label>
             </div>
 
@@ -24,8 +32,26 @@
             <div input-field class="col s7">
                 <span class="prefix">UA</span>
                 <!--<i class="material-icons prefix">UA</i>-->
-                <input id="cost" type="number" ng-model="computerModel.cost">
+                <input id="cost" type="number" ng-model="productModel.cost">
                 <label for="cost">Cost:</label>
+            </div>
+
+
+            <div input-field class="col s7 file-field">
+                <div class="btn">
+                    <span>Add Files</span>
+                    <input type="file" ng-model="productModel.productImages" accept="'image/png' 'image/jpeg'" multiple maxsize="1000000">
+                </div>
+                <div class="file-path-wrapper">
+                    <input id="files-name-holder" class="file-path validate" type="text">
+                </div>
+
+                <div ng-if="!productValidation.imagesMaxSize">
+                    <span>The Max file size is 1MB.</span>
+                </div>
+                <div ng-if="!productValidation.imagesAccept">
+                    <span>Available formats for images are: PNG; JPG; JPEG;</span>
+                </div>
             </div>
 
         </div>
@@ -33,7 +59,7 @@
     </div>
     <div class="modal-footer">
         <a class="btn-flat modal-action modal-close waves-effect waves-red left">Close</a>
-        <a class="btn right" ng-click="saveProduct();">Save</a>
+        <a class="btn right" ng-disabled="!productValidation.imagesMaxSize || !productValidation.imagesAccept" ng-click="saveProduct();">Save</a>
     </div>
 </div>
 

@@ -15,7 +15,7 @@ module.exports = function(grunt) {
 
         watch : {
             scripts : {
-                files: ['src/**/resources/**/js/**/*.js', 'src/**/resources/**/html/**/*.html'],
+                files: ['src/**/resources/**/js/**/*.js', 'src/**/resources/**/html/**/*.html', 'src/**/resources/**/css/**/*.css'],
                 tasks: ['copy'],
                 options : {
                     spawn : false
@@ -27,7 +27,7 @@ module.exports = function(grunt) {
             main: {
                 expand: true,
                 cwd: 'src/main/resources/public/',
-                src: ['**/*.js', '**/*.html'],
+                src: ['**/*.js', '**/*.html', '**/*.css'],
                 dest: 'target/classes/public/'
             }
         }

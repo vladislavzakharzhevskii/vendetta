@@ -10,7 +10,10 @@ myApp.controller("OrderController", ['$rootScope', '$scope', 'Utils', 'ProductSe
         };
 
         var getOrders = function () {
+            $rootScope.general.showPreloader = true;
+
             orderService.getOrders(function (response) {
+                $rootScope.general.showPreloader = false;
 
                 $scope.orders = response.data.orders;
 

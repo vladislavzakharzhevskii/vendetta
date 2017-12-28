@@ -7,6 +7,7 @@ import com.vendettasoft.vendetta.models.hibernate.Order;
 import com.vendettasoft.vendetta.models.hibernate.Product;
 import com.vendettasoft.vendetta.models.util.ProductOrderStatus;
 import com.vendettasoft.vendetta.utils.OrderStatusResolver;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,6 +46,12 @@ public class OrderServiceImpl implements OrderService {
         final OrdersDTO ordersDTO = new OrdersDTO();
 
         List<Order> orders = orderDAO.findAllByOrderByPkDesc();
+        //init productImage collection
+        for (Order order : orders) {
+            for (Product product : order.getProducts()) {
+                Hibernate.initialize(product);
+            }
+        }
         ordersDTO.setOrders(orders);
 
         /*recalculate statuses*/

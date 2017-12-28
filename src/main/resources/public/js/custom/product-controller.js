@@ -1,9 +1,11 @@
 myApp.controller("ProductController", ['$rootScope', '$scope', 'ProductService',
     function ($rootScope, $scope, service) {
 
-        $scope.computers = [];
-        $scope.computerModel = {};
-
+        $scope.products = [];
+        $scope.productValidation = {};
+        $scope.productModel = {
+            productImages: []
+        };
 
 
         $scope.getComputers = function () {
@@ -11,7 +13,7 @@ myApp.controller("ProductController", ['$rootScope', '$scope', 'ProductService',
 
             service.getComputers(function (response) {
                 $rootScope.general.showPreloader = false;
-                $scope.computers = response.data;
+                $scope.products = response.data;
                 $scope.openModal = true;
             }, function (response) {});
         };
@@ -22,8 +24,8 @@ myApp.controller("ProductController", ['$rootScope', '$scope', 'ProductService',
 
 
         $scope.addEditProduct = function (editableProduct) {
-            /*clean model*/
-            $scope.computerModel = {};
+            //clear model when opens after product was added
+            $scope.productModel = {}; $scope.previewImages = [];
 
             /*init*/
             $('#modal1').modal({
@@ -36,43 +38,72 @@ myApp.controller("ProductController", ['$rootScope', '$scope', 'ProductService',
 
             if(editableProduct) {
 
-                $scope.computerModel = {
+                $scope.productModel = {
                     pk: editableProduct.pk,
                     name: editableProduct.name,
                     type: editableProduct.type,
                     description: editableProduct.description,
-                    cost: editableProduct.cost
+                    cost: editableProduct.cost,
+                    productImages: editableProduct.productImages
                 };
+
+                $scope.previewImages = editableProduct.productImages;
             }
         };
-
-
-
 
 
         $scope.saveProduct = function () {
             $rootScope.general.showPreloader = true;
 
 
+            $scope.formData = new FormData();
 
-            service.saveProduct($scope.computerModel, function (response) {
+            //add productImages to FormData
+            for(var i = 0; i < $scope.productModel.productImages.length; i++) {
+                $scope.formData.append("files[]", $scope.productModel.productImages[i], $scope.productModel.productImages[i].name);
+            }
+
+            //add product data to FormData
+            if(angular.isDefined($scope.productModel.pk))
+                $scope.formData.set("productPk", $scope.productModel.pk);
+            $scope.formData.set("productName", $scope.productModel.name);
+            $scope.formData.set("productDescription", $scope.productModel.description);
+            $scope.formData.set("productCost", $scope.productModel.cost);
+
+
+            service.saveProduct($scope.formData, function () {
                 $rootScope.general.showPreloader = false;
-                $scope.computerModel = {};
+                $scope.productModel = {};
+
+                /*clear value in text*/
+                $('#files-name-holder').val('');
+
                 $('#modal1').modal('close');
                 //update view
                 $scope.getComputers();
-
-            }, function (response) {
+            },function () {
                 $rootScope.general.showPreloader = false;
             });
+
+
         };
 
 
         $scope.deleteProduct = function (productPK, productName) {
-            service.deleteProduct(productPK, function (response) {
+            service.deleteProduct(productPK, function () {
                 Materialize.toast("Product: '" + productName + "' has deleted." , 6000);
                 $scope.getComputers();
             }, function (response) {
+
+            });
+        };
+
+        $scope.deleteProductImage = function (image) {
+            service.deleteProductImage(image.pk, function successCallback() {
+                Materialize.toast("Product Image Has Deleted." , 6000);
+                var popupImageIdx = $scope.previewImages.indexOf(image);
+                $scope.previewImages.splice(popupImageIdx, 1);
+            }, function failure() {
 
             });
         };

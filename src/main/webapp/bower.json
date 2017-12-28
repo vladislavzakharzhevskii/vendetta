@@ -13,10 +13,7 @@
     "sweetalert": "~1.1.2",
     "ngSweetAlert": "1.1.2"
   },
-
-  "resolutions" : {
-    "sweetalert" : "~1.1.2"
+  "resolutions": {
+    "sweetalert": "~1.1.2"
   }
-
-
 }

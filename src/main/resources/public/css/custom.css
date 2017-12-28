@@ -1,0 +1,14 @@
+#removePreviewButton {
+    position: fixed;
+    z-index: 100001;
+    margin-left: 55px;
+    margin-top: 2px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+#removePreviewButton:hover {
+    color: red;
+    opacity: .9;
+}
+
