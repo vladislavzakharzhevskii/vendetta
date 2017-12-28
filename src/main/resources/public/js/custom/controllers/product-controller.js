@@ -9,10 +9,8 @@ myApp.controller("ProductController", ['$rootScope', '$scope', 'ProductService',
 
 
         $scope.getComputers = function () {
-            $rootScope.general.showPreloader = true;
 
             service.getComputers(function (response) {
-                $rootScope.general.showPreloader = false;
                 $scope.products = response.data;
                 $scope.openModal = true;
             }, function (response) {});
@@ -53,7 +51,6 @@ myApp.controller("ProductController", ['$rootScope', '$scope', 'ProductService',
 
 
         $scope.saveProduct = function () {
-            $rootScope.general.showPreloader = true;
 
 
             $scope.formData = new FormData();
@@ -72,7 +69,6 @@ myApp.controller("ProductController", ['$rootScope', '$scope', 'ProductService',
 
 
             service.saveProduct($scope.formData, function () {
-                $rootScope.general.showPreloader = false;
                 $scope.productModel = {};
 
                 /*clear value in text*/
@@ -81,9 +77,7 @@ myApp.controller("ProductController", ['$rootScope', '$scope', 'ProductService',
                 $('#modal1').modal('close');
                 //update view
                 $scope.getComputers();
-            },function () {
-                $rootScope.general.showPreloader = false;
-            });
+            },function () {});
 
 
         };

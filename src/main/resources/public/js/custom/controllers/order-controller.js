@@ -10,10 +10,8 @@ myApp.controller("OrderController", ['$rootScope', '$scope', 'Utils', 'ProductSe
         };
 
         var getOrders = function () {
-            $rootScope.general.showPreloader = true;
 
             orderService.getOrders(function (response) {
-                $rootScope.general.showPreloader = false;
 
                 $scope.orders = response.data.orders;
 
@@ -72,7 +70,6 @@ myApp.controller("OrderController", ['$rootScope', '$scope', 'Utils', 'ProductSe
         };
 
         $scope.showOrderPopup = function () {
-            $rootScope.general.showPreloader = true;
 
             $('#orderModal').modal({
                 dismissible: false,
@@ -82,7 +79,6 @@ myApp.controller("OrderController", ['$rootScope', '$scope', 'Utils', 'ProductSe
             /*get products to show into modal*/
             /*todo rename method*/
             productService.getComputers(function (response) {
-                $rootScope.general.showPreloader = false;
 
                 /*Set Up Delivery Time and Date*/
                 var current = new Date();

@@ -12,10 +12,12 @@
     <script src="../js/libraries/SweetAlert.min.js" type="application/javascript"></script>
 
     <script src="../js/custom/app.js" type="application/javascript"></script>
+    <script src="../js/custom/http-interceptor.js" type="application/javascript"></script>
+    <script src="../js/custom/config.js" type="application/javascript"></script>
     <script src="../js/custom/routing.js" type="application/javascript"></script>
-    <script src="../js/custom/base-page.js" type="application/javascript"></script>
-    <script src="../js/custom/product-controller.js" type="application/javascript"></script>
-    <script src="../js/custom/order-controller.js" type="application/javascript"></script>
+    <script src="../js/custom/controllers/base-page.js" type="application/javascript"></script>
+    <script src="../js/custom/controllers/product-controller.js" type="application/javascript"></script>
+    <script src="../js/custom/controllers/order-controller.js" type="application/javascript"></script>
     <script src="../js/custom/controllers/clients-controller.js"></script>
     <script src="../js/custom/services/traini-service.js" type="application/javascript"></script>
     <script src="../js/custom/services/product-service.js" type="application/javascript"></script>
@@ -61,7 +63,7 @@
         </div>
     </div>
 
-    <div ng-if="general.showPreloader" id="pre-loader" ng-include="'html/preloader/preloader.html'"></div>
+    <div class="pl15" ng-if="general.showPreloader" id="pre-loader" ng-include="'html/preloader/preloader.html'"></div>
 
     <!-- CONTENT PAGE -->
     <div class="container" ng-include="'html/pages/' + page.htmlPage + '.html'"></div>
