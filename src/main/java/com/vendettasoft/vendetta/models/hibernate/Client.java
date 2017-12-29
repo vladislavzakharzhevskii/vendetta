@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "users")
-public class User extends BaseModel {
+@Table(name = "clients")
+public class Client extends BaseModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

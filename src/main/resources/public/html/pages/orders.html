@@ -4,59 +4,7 @@
     <!--include html with modal-->
     <div id="modal" ng-include="'html/pages/modals/order-modal.html'"></div>
 
+    <!-- INCLUDE CONTENT -->
+    <div id="orders-view" ng-include="'html/pages/parts/orders-view.html'"></div>
 
-
-    <table class="highlight responsive-table">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th></th>
-            <th>Client</th>
-            <th>Order Info</th>
-            <th>Delivery Time</th>
-            <th>Delivery Address</th>
-            <th>Total Cost</th>
-            <th>Status</th>
-            <th></th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <tr ng-repeat="order in orders">
-            <td>{{order.pk}}</td>
-            <td>
-                <i class="material-icons prefix ng-scope">local_shipping</i>
-            </td>
-            <td>{{order.firstName}} {{order.lastName}}</td>
-            <td>
-                <ul type="square">
-                    <li ng-repeat="product in order.products">
-                        &#9726; {{product.name}};
-                    </li>
-                </ul>
-            </td>
-            <td>{{order.deliveryDate | date:'MM-dd-yyyy h:mm a'}}</td>
-            <td>{{order.deliveryAddress}}</td>
-            <td>{{order.totalCost}}&#8372;</td>
-            <td>
-                <span class="new badge" ng-class="getOrderStatusColor(order.orderStatus);" data-badge-caption="">{{order.orderStatus}}</span>
-            </td>
-            <td>
-                <div ng-switch="order.orderStatus">
-                    <span ng-switch-when="NEW">
-                        <div class="row">
-                            <button type="button" ng-click="defineDelivery(order.pk)">Schedule</button>
-                        </div>
-                    </span>
-                    <span ng-switch-when="COMPLETED">
-                        <button type="button">View</button>
-                    </span>
-                    <span ng-switch-when="IN_DELIVERING">
-                        <button type="button">Info</button>
-                    </span>
-                </div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
 </div>

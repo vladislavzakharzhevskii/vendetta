@@ -2,7 +2,7 @@ package com.vendettasoft.vendetta.utils;
 
 import com.vendettasoft.vendetta.dao.OrderDAO;
 import com.vendettasoft.vendetta.models.hibernate.Order;
-import com.vendettasoft.vendetta.models.util.ProductOrderStatus;
+import com.vendettasoft.vendetta.models.util.OrderStatus;
 
 import java.util.*;
 
@@ -34,7 +34,7 @@ public class OrderStatusResolver {
     private void changeStatusesToCompleted() {
 
         for (Order order : orders) {
-            if (order.getOrderStatus().equals(ProductOrderStatus.IN_DELIVERING)) {
+            if (order.getOrderStatus().equals(OrderStatus.IN_DELIVERING)) {
 
                 if (order.getDeliveryDate().getTime() < currentTime) {
                     receiveRequests.put(UUID.randomUUID().toString(), order);
@@ -47,10 +47,10 @@ public class OrderStatusResolver {
     private void changeStatusesToExpired() {
         for (Order order : orders) {
 
-            if (order.getOrderStatus().equals(ProductOrderStatus.NEW)) {
+            if (order.getOrderStatus().equals(OrderStatus.NEW)) {
 
                 if (order.getDeliveryDate().getTime() < currentTime) {
-                    order.setOrderStatus(ProductOrderStatus.EXPIRED);
+                    order.setOrderStatus(OrderStatus.EXPIRED);
                 }
 
             }

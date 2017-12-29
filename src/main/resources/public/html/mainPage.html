@@ -16,12 +16,15 @@
     <script src="../js/custom/config.js" type="application/javascript"></script>
     <script src="../js/custom/routing.js" type="application/javascript"></script>
     <script src="../js/custom/controllers/base-page.js" type="application/javascript"></script>
+    <script src="../js/custom/controllers/root-controller.js" type="application/javascript"></script>
+    <script src="../js/custom/controllers/dashboard-controller.js" type="application/javascript"></script>
     <script src="../js/custom/controllers/product-controller.js" type="application/javascript"></script>
     <script src="../js/custom/controllers/order-controller.js" type="application/javascript"></script>
     <script src="../js/custom/controllers/clients-controller.js"></script>
     <script src="../js/custom/services/traini-service.js" type="application/javascript"></script>
     <script src="../js/custom/services/product-service.js" type="application/javascript"></script>
     <script src="../js/custom/services/order-service.js" type="application/javascript"></script>
+    <script src="../js/custom/services/dashboard-service.js" type="application/javascript"></script>
     <script src="../js/custom/services/utils/order-service-util.js" type="application/javascript"></script>
 
 
@@ -66,7 +69,7 @@
     <div class="pl15" ng-if="general.showPreloader" id="pre-loader" ng-include="'html/preloader/preloader.html'"></div>
 
     <!-- CONTENT PAGE -->
-    <div class="container" ng-include="'html/pages/' + page.htmlPage + '.html'"></div>
+    <div class="container row" ng-include="'html/pages/' + page.htmlPage + '.html'"></div>
 
 
 

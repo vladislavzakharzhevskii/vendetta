@@ -1,6 +1,6 @@
 package com.vendettasoft.vendetta.models.util;
 
-public enum ProductOrderStatus {
+public enum OrderStatus {
 
     NEW("New"),
     IN_DELIVERING("In Delivering"),
@@ -12,7 +12,7 @@ public enum ProductOrderStatus {
 
     private String name;
 
-    ProductOrderStatus(String name) {
+    OrderStatus(String name) {
         this.name = name;
     }
 

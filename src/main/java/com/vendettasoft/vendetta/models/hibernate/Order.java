@@ -1,7 +1,7 @@
 package com.vendettasoft.vendetta.models.hibernate;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.vendettasoft.vendetta.models.util.ProductOrderStatus;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.vendettasoft.vendetta.models.util.OrderStatus;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -30,12 +30,12 @@ public class Order extends BaseModel {
     private String deliveryAddress;
 
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable( name = "orders_products",
             joinColumns = { @JoinColumn(name = "order_pk") },
             inverseJoinColumns = { @JoinColumn(name = "product_pk") }
     )
-    @JsonManagedReference
+    @JsonIgnoreProperties("orders")
     private List<Product> products;
 
 
@@ -47,7 +47,7 @@ public class Order extends BaseModel {
 
     @Column(name = "orderStatus")
     @Enumerated(EnumType.STRING)
-    private ProductOrderStatus orderStatus;
+    private OrderStatus orderStatus;
 
     public Long getPk() {
         return pk;
@@ -113,11 +113,11 @@ public class Order extends BaseModel {
         this.totalCost = totalCost;
     }
 
-    public ProductOrderStatus getOrderStatus() {
+    public OrderStatus getOrderStatus() {
         return orderStatus;
     }
 
-    public void setOrderStatus(ProductOrderStatus orderStatus) {
+    public void setOrderStatus(OrderStatus orderStatus) {
         this.orderStatus = orderStatus;
     }
 }

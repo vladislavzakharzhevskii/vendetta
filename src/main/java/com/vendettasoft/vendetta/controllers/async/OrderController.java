@@ -4,7 +4,7 @@ import com.vendettasoft.vendetta.dao.OrderDAO;
 import com.vendettasoft.vendetta.dao.ProductDAO;
 import com.vendettasoft.vendetta.models.dto.OrdersDTO;
 import com.vendettasoft.vendetta.models.hibernate.Order;
-import com.vendettasoft.vendetta.models.util.ProductOrderStatus;
+import com.vendettasoft.vendetta.models.util.OrderStatus;
 import com.vendettasoft.vendetta.services.OrderService;
 import com.vendettasoft.vendetta.utils.binders.DateWithTimePropertyEditor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +45,7 @@ public class OrderController {
     public void changeOrderStatus(@RequestParam("pk") Order order,
                                   @RequestParam("newOrderStatus") String newStatus) {
 
-        order.setOrderStatus(ProductOrderStatus.valueOf(newStatus));
+        order.setOrderStatus(OrderStatus.valueOf(newStatus));
 
         orderDAO.save(order);
     }

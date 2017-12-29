@@ -1,7 +1,6 @@
 package com.vendettasoft.vendetta.models.hibernate;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.List;
@@ -25,11 +24,11 @@ public class Product extends BaseModel {
     private Double cost;
 
     @ManyToMany(mappedBy = "products")
-    @JsonBackReference
+    @JsonIgnoreProperties("products")
     private List<Order> orders;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
+    @JsonIgnoreProperties("product")
     private List<ProductImage> productImages;
 
     public long getPk() {

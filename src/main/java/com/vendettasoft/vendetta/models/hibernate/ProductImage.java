@@ -1,7 +1,5 @@
 package com.vendettasoft.vendetta.models.hibernate;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -29,7 +27,6 @@ public class ProductImage extends BaseModel {
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    @JsonBackReference
     private Product product;
 
     @Column(name = "created_date", nullable = false)
