@@ -6,14 +6,12 @@
 .left-part-quarter-container{
     width: 50%;
     height: 50%;
-    border-right: 1px solid blue;
     float: left
 }
 
 .right-part-quarter-container {
     width: 50%;
     min-height: 50%;
-    border-left: 1px solid blue;
     float: right
 }
 
