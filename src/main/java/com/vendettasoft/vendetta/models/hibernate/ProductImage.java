@@ -1,5 +1,7 @@
 package com.vendettasoft.vendetta.models.hibernate;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -21,7 +23,7 @@ public class ProductImage extends BaseModel {
     @Column(name = "contentType", nullable = false)
     private String contentType;
 
-    @Lob
+    @Type(type="org.hibernate.type.BinaryType")
     @Column(name = "lob", nullable = false)
     private byte[] lob;
 
